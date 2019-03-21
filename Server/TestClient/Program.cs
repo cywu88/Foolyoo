@@ -1,4 +1,6 @@
-﻿ 
+﻿
+
+using System.Threading;
 
 namespace TestClient
 {
@@ -8,9 +10,12 @@ namespace TestClient
         {
             ClientGameMgr mgr = new ClientGameMgr();
             mgr.Init();
-        
 
-          
+            while (true)
+            {
+                Thread.Sleep(10000);
+            }
+
         }
     }
 }

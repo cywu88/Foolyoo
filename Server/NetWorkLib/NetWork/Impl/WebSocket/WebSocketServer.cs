@@ -18,6 +18,9 @@ namespace NetWorkLib
         {
             base.Setup(ip, port);
             _server = new WebSocketSharp.Server.WebSocketServer(NetTool.GetAddress(ip, port));
+
+           
+
             _server.Log.Level = WebSocketSharp.LogLevel.Error;
             // _server.WaitTime = TimeSpan.FromSeconds(1);
             _server.AddWebSocketService(defaultServicePath, () =>

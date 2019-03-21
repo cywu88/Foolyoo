@@ -26,7 +26,9 @@ namespace NetWorkLib
         public override void Connect()
         {
             base.Connect();
-            _socket.ConnectAsync();
+            //_socket.ConnectAsync();
+            _socket.Connect();
+            _socket.Send("BALUS");
         }
 
         public override void Close()
