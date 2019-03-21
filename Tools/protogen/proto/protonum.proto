@@ -1,0 +1,12 @@
+syntax = "proto3";
+package message;
+
+// 消息头枚举，不用于消息收发
+// !!! 名字必须对应到消息类型
+enum ProtoNum
+{
+	Unknown = 0;
+ 
+	CMLoginRequest = 1001;
+
+}

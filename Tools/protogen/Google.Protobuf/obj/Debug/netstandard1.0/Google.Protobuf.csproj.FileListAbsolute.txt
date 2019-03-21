@@ -1,0 +1,11 @@
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\bin\Debug\netstandard1.0\Google.Protobuf.deps.json
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\bin\Debug\netstandard1.0\Google.Protobuf.dll
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\bin\Debug\netstandard1.0\Google.Protobuf.pdb
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\bin\Debug\netstandard1.0\Google.Protobuf.xml
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\obj\Debug\netstandard1.0\Google.Protobuf.csprojAssemblyReference.cache
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\obj\Debug\netstandard1.0\Google.Protobuf.csproj.CoreCompileInputs.cache
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\obj\Debug\netstandard1.0\Google.Protobuf.AssemblyInfoInputs.cache
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\obj\Debug\netstandard1.0\Google.Protobuf.AssemblyInfo.cs
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\obj\Debug\netstandard1.0\Google.Protobuf.dll
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\obj\Debug\netstandard1.0\Google.Protobuf.xml
+D:\NetTest\protobuf-3.6.1\csharp\src\Google.Protobuf\obj\Debug\netstandard1.0\Google.Protobuf.pdb

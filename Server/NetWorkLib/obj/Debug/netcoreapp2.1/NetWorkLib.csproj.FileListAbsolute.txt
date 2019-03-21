@@ -1,0 +1,17 @@
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\NetWorkLib.deps.json
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\NetWorkLib.runtimeconfig.json
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\NetWorkLib.runtimeconfig.dev.json
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\NetWorkLib.dll
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\NetWorkLib.pdb
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\Core.dll
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\Google.Protobuf.dll
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\Core.pdb
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\Google.Protobuf.pdb
+E:\Foolyoo\Server\NetWorkLib\bin\Debug\netcoreapp2.1\Google.Protobuf.xml
+E:\Foolyoo\Server\NetWorkLib\obj\Debug\netcoreapp2.1\NetWorkLib.csprojAssemblyReference.cache
+E:\Foolyoo\Server\NetWorkLib\obj\Debug\netcoreapp2.1\NetWorkLib.csproj.CoreCompileInputs.cache
+E:\Foolyoo\Server\NetWorkLib\obj\Debug\netcoreapp2.1\NetWorkLib.AssemblyInfoInputs.cache
+E:\Foolyoo\Server\NetWorkLib\obj\Debug\netcoreapp2.1\NetWorkLib.AssemblyInfo.cs
+E:\Foolyoo\Server\NetWorkLib\obj\Debug\netcoreapp2.1\NetWorkLib.csproj.CopyComplete
+E:\Foolyoo\Server\NetWorkLib\obj\Debug\netcoreapp2.1\NetWorkLib.dll
+E:\Foolyoo\Server\NetWorkLib\obj\Debug\netcoreapp2.1\NetWorkLib.pdb

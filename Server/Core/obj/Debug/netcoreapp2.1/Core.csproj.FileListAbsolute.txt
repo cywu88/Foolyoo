@@ -1,0 +1,11 @@
+E:\Foolyoo\Server\Core\bin\Debug\netcoreapp2.1\Core.deps.json
+E:\Foolyoo\Server\Core\bin\Debug\netcoreapp2.1\Core.runtimeconfig.json
+E:\Foolyoo\Server\Core\bin\Debug\netcoreapp2.1\Core.runtimeconfig.dev.json
+E:\Foolyoo\Server\Core\bin\Debug\netcoreapp2.1\Core.dll
+E:\Foolyoo\Server\Core\bin\Debug\netcoreapp2.1\Core.pdb
+E:\Foolyoo\Server\Core\obj\Debug\netcoreapp2.1\Core.csprojAssemblyReference.cache
+E:\Foolyoo\Server\Core\obj\Debug\netcoreapp2.1\Core.csproj.CoreCompileInputs.cache
+E:\Foolyoo\Server\Core\obj\Debug\netcoreapp2.1\Core.AssemblyInfoInputs.cache
+E:\Foolyoo\Server\Core\obj\Debug\netcoreapp2.1\Core.AssemblyInfo.cs
+E:\Foolyoo\Server\Core\obj\Debug\netcoreapp2.1\Core.dll
+E:\Foolyoo\Server\Core\obj\Debug\netcoreapp2.1\Core.pdb
