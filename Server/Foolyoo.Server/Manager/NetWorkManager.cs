@@ -26,7 +26,7 @@ namespace Foolyoo.Server
 
         private void InitForClient()
         {
-            forClient.Init("127.0.0.1", 6388);
+            forClient.Init("127.0.0.1", 6638);
 
         }
     }

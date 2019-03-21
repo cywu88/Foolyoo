@@ -24,8 +24,23 @@ namespace Message {
     static ProtonumReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChRwcm90by9wcm90b251bS5wcm90bxIHbWVzc2FnZSosCghQcm90b051bRIL",
-            "CgdVbmtub3duEAASEwoOQ01Mb2dpblJlcXVlc3QQ6QdiBnByb3RvMw=="));
+            "ChRwcm90by9wcm90b251bS5wcm90bxIHbWVzc2FnZSrGBQoIUHJvdG9OdW0S",
+            "CwoHVW5rbm93bhAAEhMKDkNNTG9naW5SZXF1ZXN0EOkHEhEKDENNTG9naW5S",
+            "ZXBseRDqBxITCg5DTU1hdGNoUmVxdWVzdBDrBxIRCgxDTU1hdGNoUmVwbHkQ",
+            "7AcSEwoOQ01NYXRjaFN1Y2Nlc3MQ7gcSEgoNQ01NYXRjaENhbmNlbBDvBxIW",
+            "ChFDTUNhbmNlbFJlY29ubmVjdBDxBxIVChBDTVBsYXllckluZm9TeW5jEPQH",
+            "EhMKDkNCTG9naW5SZXF1ZXN0ENEPEhEKDENCTG9naW5SZXBseRDSDxIYChND",
+            "QkpvaW5CYXR0bGVSZXF1ZXN0ENMPEhYKEUNCSm9pbkJhdHRsZVJlcGx5ENQP",
+            "EgwKB0NCUmVhZHkQ1Q8SEAoLQ0JSZWFkeVN5bmMQ1g8SDwoKQ0JSb29tU3lu",
+            "YxDYDxITCg5DQkNhcmRJbmZvU3luYxDaDxIPCgpDQlBsYXlDYXJkENsPEhMK",
+            "DkNCUGxheUNhcmRTeW5jENwPEhMKDkNCU2VuZENhcmRTeW5jEN4PEhcKEkNC",
+            "QmF0dGxlUmVzdWx0U3luYxDgDxIVChBDQkNhcmRFZmZlY3RTeW5jEOIPEhkK",
+            "FENCUGxheWVyRHJvcENhcmRTeW5jEOQPEhQKD0NCUGxheWVyT3V0U3luYxDm",
+            "DxISCg1DQlNlbmRNZXNzYWdlEOcPEhYKEUNCU2VuZE1lc3NhZ2VTeW5jEOgP",
+            "EhcKEkNCUmVjb25uZWN0UmVxdWVzdBDpDxIVChBDQlJlY29ubmVjdFJlcGx5",
+            "EOoPEhMKDkJNTG9naW5SZXF1ZXN0ELkXEhEKDEJNTG9naW5SZXBseRC6FxIY",
+            "ChNCTUNyZWF0ZVJvb21SZXF1ZXN0ELsXEhYKEUJNQ3JlYXRlUm9vbVJlcGx5",
+            "ELwXEhMKDkJNQmF0dGxlUmVzdWx0EL0XYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Message.ProtoNum), }, null));
@@ -41,6 +56,43 @@ namespace Message {
   public enum ProtoNum {
     [pbr::OriginalName("Unknown")] Unknown = 0,
     [pbr::OriginalName("CMLoginRequest")] CmloginRequest = 1001,
+    [pbr::OriginalName("CMLoginReply")] CmloginReply = 1002,
+    [pbr::OriginalName("CMMatchRequest")] CmmatchRequest = 1003,
+    [pbr::OriginalName("CMMatchReply")] CmmatchReply = 1004,
+    [pbr::OriginalName("CMMatchSuccess")] CmmatchSuccess = 1006,
+    [pbr::OriginalName("CMMatchCancel")] CmmatchCancel = 1007,
+    [pbr::OriginalName("CMCancelReconnect")] CmcancelReconnect = 1009,
+    [pbr::OriginalName("CMPlayerInfoSync")] CmplayerInfoSync = 1012,
+    /// <summary>
+    ///Client -> Battle
+    /// </summary>
+    [pbr::OriginalName("CBLoginRequest")] CbloginRequest = 2001,
+    [pbr::OriginalName("CBLoginReply")] CbloginReply = 2002,
+    [pbr::OriginalName("CBJoinBattleRequest")] CbjoinBattleRequest = 2003,
+    [pbr::OriginalName("CBJoinBattleReply")] CbjoinBattleReply = 2004,
+    [pbr::OriginalName("CBReady")] Cbready = 2005,
+    [pbr::OriginalName("CBReadySync")] CbreadySync = 2006,
+    [pbr::OriginalName("CBRoomSync")] CbroomSync = 2008,
+    [pbr::OriginalName("CBCardInfoSync")] CbcardInfoSync = 2010,
+    [pbr::OriginalName("CBPlayCard")] CbplayCard = 2011,
+    [pbr::OriginalName("CBPlayCardSync")] CbplayCardSync = 2012,
+    [pbr::OriginalName("CBSendCardSync")] CbsendCardSync = 2014,
+    [pbr::OriginalName("CBBattleResultSync")] CbbattleResultSync = 2016,
+    [pbr::OriginalName("CBCardEffectSync")] CbcardEffectSync = 2018,
+    [pbr::OriginalName("CBPlayerDropCardSync")] CbplayerDropCardSync = 2020,
+    [pbr::OriginalName("CBPlayerOutSync")] CbplayerOutSync = 2022,
+    [pbr::OriginalName("CBSendMessage")] CbsendMessage = 2023,
+    [pbr::OriginalName("CBSendMessageSync")] CbsendMessageSync = 2024,
+    [pbr::OriginalName("CBReconnectRequest")] CbreconnectRequest = 2025,
+    [pbr::OriginalName("CBReconnectReply")] CbreconnectReply = 2026,
+    /// <summary>
+    ///Battle -> Main
+    /// </summary>
+    [pbr::OriginalName("BMLoginRequest")] BmloginRequest = 3001,
+    [pbr::OriginalName("BMLoginReply")] BmloginReply = 3002,
+    [pbr::OriginalName("BMCreateRoomRequest")] BmcreateRoomRequest = 3003,
+    [pbr::OriginalName("BMCreateRoomReply")] BmcreateRoomReply = 3004,
+    [pbr::OriginalName("BMBattleResult")] BmbattleResult = 3005,
   }
 
   #endregion

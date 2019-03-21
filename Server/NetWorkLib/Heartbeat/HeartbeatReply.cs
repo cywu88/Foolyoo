@@ -5,18 +5,16 @@ using System.Text;
 
 namespace NetWorkLib
 {
-    public class HeartbeatRequest
+    public class HeartbeatReply
     {
-        public const ushort PROTOCOL_NUM = ushort.MaxValue - 100;
-
-        public static HeartbeatRequest Parse(byte[] data)
+        public const ushort PROTOCOL_NUM = ushort.MaxValue - 99;
+        public static HeartbeatReply Parse(byte[] data)
         {
             var num = BitConverter.ToInt32(data, 0);
-            HeartbeatRequest msg = new HeartbeatRequest();
+            HeartbeatReply msg = new HeartbeatReply();
             msg.number = num;
             return msg;
         }
-
         public byte[] Serialize()
         {
             byte[] data = new byte[6];

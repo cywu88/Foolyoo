@@ -207,6 +207,43 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "websocketsharp.core/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/websocket-sharp-core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/websocket-sharp-core.dll": {}
+        }
+      },
+      "Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "2.1.0"
+        },
+        "compile": {
+          "bin/placeholder/Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.dll": {}
+        }
+      },
+      "NetWorkLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Core": "1.0.0",
+          "Microsoft.NETCore.App": "2.1.0",
+          "websocketsharp.core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NetWorkLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NetWorkLib.dll": {}
+        }
       }
     }
   },
@@ -673,11 +710,34 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "websocketsharp.core/1.0.0": {
+      "sha512": "qwko+jN0TpWB4agvPzDZ0p0w4c0nsooeyAo+yi1IhAM+pqg0hTVle6bj/BjyS/Iwj81z+Q+wXN3oXl4dWUrBdg==",
+      "type": "package",
+      "path": "websocketsharp.core/1.0.0",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard2.0/websocket-sharp-core.dll",
+        "websocketsharp.core.1.0.0.nupkg.sha512",
+        "websocketsharp.core.nuspec"
+      ]
+    },
+    "Core/1.0.0": {
+      "type": "project",
+      "path": "../Core/Core.csproj",
+      "msbuildProject": "../Core/Core.csproj"
+    },
+    "NetWorkLib/1.0.0": {
+      "type": "project",
+      "path": "../NetWorkLib/NetWorkLib.csproj",
+      "msbuildProject": "../NetWorkLib/NetWorkLib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "Microsoft.NETCore.App >= 2.1.0"
+      "Core >= 1.0.0",
+      "Microsoft.NETCore.App >= 2.1.0",
+      "NetWorkLib >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -709,7 +769,14 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Foolyoo\\Server\\Core\\Core.csproj": {
+              "projectPath": "E:\\Foolyoo\\Server\\Core\\Core.csproj"
+            },
+            "E:\\Foolyoo\\Server\\NetWorkLib\\NetWorkLib.csproj": {
+              "projectPath": "E:\\Foolyoo\\Server\\NetWorkLib\\NetWorkLib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,4 +1,4 @@
-﻿using System;
+﻿ 
 
 namespace TestClient
 {
@@ -6,7 +6,11 @@ namespace TestClient
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ClientGameMgr mgr = new ClientGameMgr();
+            mgr.Init();
+        
+
+          
         }
     }
 }
