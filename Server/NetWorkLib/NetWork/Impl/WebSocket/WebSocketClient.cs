@@ -20,7 +20,8 @@ namespace NetWorkLib
         public override void Send(byte[] data)
         {
             base.Send(data);
-            _socket.SendAsync(data, null);
+            //_socket.SendAsync(data, null);
+            _socket.Send(data);
         }
 
         public override void Connect()
