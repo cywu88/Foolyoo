@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://www.cnblogs.com/chinarbolg/p/9601452.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+    <title>Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园</title>
+<meta property="og:description" content="lua脚本 与 C#的交互本文提供全流程，中文翻译。Chinar坚持将简单的生活方式，带给世人！（拥有更好的阅读体验 —— 高分辨率用户请根据需求调整网页缩放比例）1 Lua And C# —— Lu">
+    <link type="text/css" rel="stylesheet" href="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/bundle-kubrick.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/bundle-kubrick-mobile.css">
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/chinarbolg/rss">
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/chinarbolg/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/chinarbolg/wlwmanifest.xml">
+    <script src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/amp4ads-host-v0.js.下载"></script><script src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/pubads_impl_rendering_2019040101.js.下载"></script><script async="" src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/analytics.js.下载"></script><script src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+    <script>var currentBlogId=458138;var currentBlogApp='chinarbolg',cb_enable_mathjax=false;var isLogined=false;</script>
+    <script src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/default.min.css"><link rel="preload" href="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/f.txt"></script><script src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/pubads_impl_2019040101.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-32/html/container.html"></head>
+<body>
+<a name="top"></a>
+
+
+<div id="header">
+    
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/chinarbolg/">Chinar</a></h1>
+<p id="tagline"></p>
+</div>
+<div id="wrapper">
+<div id="main">
+    
+        <div id="post_detail">
+	<div class="post">
+		<h2>
+			<a id="cb_post_title_url" href="https://www.cnblogs.com/chinarbolg/p/9601452.html">Lua基本语法-lua与C#的交互(相当简单详细的例子)</a>
+		</h2>
+		<div class="postText"><div id="cnblogs_post_body" class="blogpost-body">
+                <p></p><center><font size="7"><strong>lua脚本 与 C#的交互</strong><br><br></font></center><p></p>
+
+<hr>
+
+<table><tbody><tr><td bgcolor="#000000">
+<center><font color="#FDF5E6" size="5">本文提供全流程，中文翻译。<br><br>Chinar坚持将简单的生活方式，带给世人！<br><br>（拥有更好的阅读体验 —— 高分辨率用户请根据需求调整网页缩放比例）
+</font>
+</center></td></tr></tbody></table>
+
+<p><br></p>
+
+<hr>
+
+<p></p><div class="toc">
+<ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#1" rel="nofollow">1</a><ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#lua-and-c-lua-%E5%92%8C-c%E7%9A%84%E4%BA%A4%E4%BA%92%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C" rel="nofollow"> Lua And C#  —— Lua 和 C#的交互准备工作</a></li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#2" rel="nofollow">2</a><ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#c-create-lua-%E7%94%A8c%E5%9C%A8lua%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%BC%96%E5%86%99lua" rel="nofollow"> C# Create Lua  —— 用C#在lua环境中编写lua </a></li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#3" rel="nofollow">3</a><ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#luadostring-%E5%9C%A8c%E8%84%9A%E6%9C%AC%E4%B8%AD%E7%BC%96%E5%86%99lua%E8%84%9A%E6%9C%AC" rel="nofollow">  lua.DoString  —— 在C#脚本中编写Lua脚本 </a></li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#4" rel="nofollow">4</a><ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#luadofile-%E7%94%A8c%E5%8A%A0%E8%BD%BDlua%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6" rel="nofollow">  lua.DoFile —— 用C#加载Lua脚本文件 </a></li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#5" rel="nofollow">5</a><ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#luaregisterfunction-%E5%B0%86c%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95-%E5%86%99%E5%85%A5%E5%88%B0lua%E8%84%9A%E6%9C%AC%E4%B8%AD" rel="nofollow">  lua.RegisterFunction  —— 将C#中的函数/方法 写入到Lua脚本中 </a></li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#6" rel="nofollow">6</a><ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#require-lua%E4%B8%AD%E5%BC%95%E7%94%A8c%E4%B8%AD%E7%9A%84%E7%B1%BB" rel="nofollow">  require   —— Lua中引用C#中的类 </a></li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#7" rel="nofollow">7</a><ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#all-%E5%85%A8%E8%84%9A%E6%9C%AC%E6%95%B0%E6%8D%AE" rel="nofollow">  All    —— 全脚本数据 </a></li>
+</ul>
+</li>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#8" rel="nofollow">8</a><ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#error-%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E7%82%B9" rel="nofollow"> Error  —— 常见报错点</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p></p>
+
+<hr>
+
+
+
+<h1 id="1"><font size="7"><strong>1</strong></font></h1>
+
+
+
+<h2 id="lua-and-c-lua-和-c的交互准备工作"><strong><font face="Segoe UI Black" size="6"> Lua And C# </font> —— Lua 和 C#的交互准备工作</strong></h2>
+
+<p><br></p>
+
+<p><strong>早期<font face="Segoe UI Black" size="5">  Lua </font> 和 <font face="Segoe UI Black" size="5">  C# </font> 之间的交互，需要用Lua官方做好的接口<font face="Segoe UI Black" size="5">  LuaInterface.dll </font>等文件来实现 </strong> <br>
+<br><br></p>
+
+<p><strong>文件的下载直接跳转Lua官方网站：<a href="http://luaforge.net/projects/luainterface/%20%E2%80%9C%E7%82%B9%E5%87%BB%E8%B7%B3%E8%BD%AC%E5%88%B0Lua%E5%AE%98%E7%BD%91%E2%80%9D" rel="nofollow">LuaInterface</a>完成下载</strong></p>
+
+<p><strong>点击<font face="Segoe UI Black" size="5">  luainterface </font>链接 ↓↓</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180307230755898" alt="这里写图片描述" title=""></p>
+
+<p><strong>点击<font face="Segoe UI Black" size="5"> 1.5.3 </font>链接 开始下载</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180307231005642" alt="这里写图片描述" title=""></p>
+
+<p><strong>下载完成后解压压缩文件，并打开<font face="Segoe UI Black" size="5"> Built </font>文件夹</strong></p>
+
+<p><strong>目录中的3个文件：<font face="Segoe UI Black" size="5"> lua51.dll </font>、<font face="Segoe UI Black" size="5"> LuaInterface.dll </font>、<font face="Segoe UI Black" size="5"> luanet.dll </font>是暂时需要用到的</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180307231745881" alt="这里写图片描述" title=""></p>
+
+<p><strong>打开VS，创建一个控制台脚本</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180307232616670" alt="这里写图片描述" title=""></p>
+
+<p><strong>将下载好的<font face="Segoe UI Black" size="5"> LuaInterface.dll </font>文件拖到项目中</strong></p>
+
+<p><strong>并按照步骤添加引用</strong></p>
+
+<p><strong>图中我没有<font face="Segoe UI Black" size="5"> using LuaInterface; </font> 请自己添加上</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180307234008485" alt="这里写图片描述" title=""></p>
+
+<p><strong>找到项目中的目录，并将下载好的<font face="Segoe UI Black" size="5"> lua51.dll </font>、<font face="Segoe UI Black" size="5"> luanet.dll </font> 两个文件，拷贝到DeBug文件目录中</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180307234339879" alt="这里写图片描述" title=""></p>
+
+<hr>
+
+
+
+<h1 id="2"><font size="7"><strong>2</strong></font></h1>
+
+
+
+<h2 id="c-create-lua-用c在lua环境中编写lua"><strong><font face="Segoe UI Black" size="6"> C# Create Lua </font> —— 用C#在lua环境中编写lua </strong></h2>
+
+<p><br></p>
+
+<p><strong>用简单的控制台程序 测试，输出</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180115013530535" alt="举个栗子黑白88" title=""></p>
+
+
+
+<pre class="prettyprint"><code class="hljs cs"><span class="hljs-keyword"><span class="hljs-keyword">using</span></span> System;
+<span class="hljs-keyword"><span class="hljs-keyword">using</span></span> LuaInterface; <span class="hljs-comment"><span class="hljs-comment">//引用命名空间</span></span>
+
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ChinarTest</span>
+{
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 测试类</span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+    {
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">static</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> <span class="hljs-title">Main</span>(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params">[] args</span>) 
+        </span>{
+            Lua lua    = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Lua();        <span class="hljs-comment"><span class="hljs-comment">//创建一个lua解释器</span></span>
+            lua[<span class="hljs-string"><span class="hljs-string">"num"</span></span>] = <span class="hljs-number"><span class="hljs-number">66</span></span>;               <span class="hljs-comment"><span class="hljs-comment">//用C#脚本在lua环境中，创建一个变量</span></span>
+            lua[<span class="hljs-string"><span class="hljs-string">"str"</span></span>] = <span class="hljs-string"><span class="hljs-string">"chinar"</span></span>;         <span class="hljs-comment"><span class="hljs-comment">//用C#脚本在lua环境中，创建一个字符串变量</span></span>
+            Console.WriteLine(lua[<span class="hljs-string"><span class="hljs-string">"num"</span></span>]); <span class="hljs-comment"><span class="hljs-comment">//输出</span></span>
+            Console.WriteLine(lua[<span class="hljs-string"><span class="hljs-string">"str"</span></span>]); <span class="hljs-comment"><span class="hljs-comment">//输出</span></span>
+            Console.ReadKey();             <span class="hljs-comment"><span class="hljs-comment">//等待输入</span></span>
+        }
+    }
+}</code></pre>
+
+<p><strong>输出结果：</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs">66
+chinar</code></pre>
+
+<hr>
+
+
+
+<h1 id="3"><font size="7"><strong>3</strong></font></h1>
+
+
+
+<h2 id="luadostring-在c脚本中编写lua脚本"><strong><font face="Segoe UI Black" size="6">  lua.DoString </font> —— 在C#脚本中编写Lua脚本 </strong></h2>
+
+<p><br></p>
+
+<p><strong><font face="Segoe UI Black" size="5"> lua.DoString() </font> 用于创建代码段</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180115013530535" alt="举个栗子黑白88" title=""></p>
+
+
+
+<pre class="prettyprint"><code class="hljs cs"><span class="hljs-keyword"><span class="hljs-keyword">using</span></span> System;
+<span class="hljs-keyword"><span class="hljs-keyword">using</span></span> LuaInterface; <span class="hljs-comment"><span class="hljs-comment">//引用命名空间</span></span>
+
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ChinarTest</span>
+{
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 测试类</span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+    {
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">static</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> <span class="hljs-title">Main</span>(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params">[] args</span>)
+        </span>{
+            Lua lua = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Lua();                              <span class="hljs-comment"><span class="hljs-comment">//创建一个lua解释器</span></span>
+            lua.DoString(<span class="hljs-string"><span class="hljs-string">"num=666"</span></span>);                          <span class="hljs-comment"><span class="hljs-comment">//用C#脚本在lua环境中，创建一段lua脚本：num=666</span></span>
+            lua.DoString(<span class="hljs-string"><span class="hljs-string">"str='chianr666'"</span></span>);                  <span class="hljs-comment"><span class="hljs-comment">//用C#脚本在lua环境中，创建一段lua脚本：str='chianr666'</span></span>
+            <span class="hljs-keyword"><span class="hljs-keyword">object</span></span>[] values = lua.DoString(<span class="hljs-string"><span class="hljs-string">"return num,str"</span></span>); <span class="hljs-comment"><span class="hljs-comment">//用一个object数组 去接受返回值</span></span>
+            <span class="hljs-keyword"><span class="hljs-keyword">foreach</span></span> (<span class="hljs-keyword"><span class="hljs-keyword">var</span></span> <span class="hljs-keyword"><span class="hljs-keyword">value</span></span> <span class="hljs-keyword"><span class="hljs-keyword">in</span></span> values)                     <span class="hljs-comment"><span class="hljs-comment">//遍历 values 数组中的元素</span></span>
+            {
+                Console.WriteLine(<span class="hljs-keyword"><span class="hljs-keyword">value</span></span>); <span class="hljs-comment"><span class="hljs-comment">//输出</span></span>
+            }
+
+            Console.ReadKey(); <span class="hljs-comment"><span class="hljs-comment">//等待输入</span></span>
+        }
+    }
+}</code></pre>
+
+<p><strong>输出结果：</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs">666
+chianr666</code></pre>
+
+<hr>
+
+
+
+<h1 id="4"><font size="7"><strong>4</strong></font></h1>
+
+
+
+<h2 id="luadofile-用c加载lua脚本文件"><strong><font face="Segoe UI Black" size="6">  lua.DoFile</font> —— 用C#加载Lua脚本文件 </strong></h2>
+
+<p><br></p>
+
+<p><strong><font face="Segoe UI Black" size="5"> lua.DoFile() </font> 用于找到目录中的Lua文件，并加载</strong></p>
+
+<p><strong><font color="#FF1493" face="微软雅黑" size="4"> 需要将写好的Lua文件拖到项目中，并且修改属性为 ：如果较新则复制 / 始终复制 </font></strong></p>
+
+<p><strong><font color="#FF1493" face="微软雅黑" size="4"> 否则会出现找不到文件的 报错信息</font></strong></p>
+
+<p><strong>不会的请看下图</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180308003115818" alt="这里写图片描述" title=""></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180115013530535" alt="举个栗子黑白88" title=""></p>
+
+
+
+<pre class="prettyprint"><code class="hljs cs"><span class="hljs-keyword"><span class="hljs-keyword">using</span></span> System;
+<span class="hljs-keyword"><span class="hljs-keyword">using</span></span> LuaInterface; <span class="hljs-comment"><span class="hljs-comment">//引用命名空间</span></span>
+
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ChinarTest</span>
+{
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 测试类</span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+    {
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">static</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> <span class="hljs-title">Main</span>(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params">[] args</span>)
+        </span>{
+            Lua lua = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Lua();      <span class="hljs-comment"><span class="hljs-comment">//创建一个lua解释器</span></span>
+            lua.DoFile(<span class="hljs-string"><span class="hljs-string">"Chinar.lua"</span></span>); <span class="hljs-comment"><span class="hljs-comment">//加载lua文件 —— lua.DoFile（文件名）</span></span>
+            Console.ReadKey();        <span class="hljs-comment"><span class="hljs-comment">//等待输入</span></span>
+        }
+    }
+}</code></pre>
+
+<p><strong>下边是<font face="Segoe UI Black" size="5"> Chinar.lua </font>文件</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs lua"><span class="hljs-built_in"><span class="hljs-built_in">print</span></span>(<span class="hljs-string"><span class="hljs-string">'I am Chianr'</span></span>)
+MyTable={<span class="hljs-number"><span class="hljs-number">1</span></span>,<span class="hljs-number"><span class="hljs-number">22</span></span>,<span class="hljs-number"><span class="hljs-number">333</span></span>,<span class="hljs-number"><span class="hljs-number">4444</span></span>,<span class="hljs-number"><span class="hljs-number">55555</span></span>,<span class="hljs-number"><span class="hljs-number">666666</span></span>}
+<span class="hljs-built_in"><span class="hljs-built_in">print</span></span>(<span class="hljs-built_in"><span class="hljs-built_in">table</span></span>.<span class="hljs-built_in">concat</span>(MyTable)..<span class="hljs-string"><span class="hljs-string">'I am Chianr'</span></span>)</code></pre>
+
+<p><strong>输出结果：</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs mathematica nginx"><span class="hljs-keyword"><span class="hljs-attribute">I</span></span> am Chianr
+<span class="hljs-number">122333444455555666666</span><span class="hljs-keyword">I</span> am Chianr</code></pre>
+
+<hr>
+
+
+
+<h1 id="5"><font size="7"><strong>5</strong></font></h1>
+
+
+
+<h2 id="luaregisterfunction-将c中的函数方法-写入到lua脚本中"><strong><font face="Segoe UI Black" size="6">  lua.RegisterFunction </font> —— 将C#中的函数/方法 写入到Lua脚本中 </strong></h2>
+
+<p><br></p>
+
+<p><strong><font face="Segoe UI Black" size="5"> lua.RegisterFunction() </font> 用于将C#中的函数/方法 写入到Lua脚本中</strong></p>
+
+<p><strong><font color="#FF1493" face="微软雅黑" size="4"> 注册方法</font></strong> <br>
+<strong><font face="Segoe UI Black" size="5"> lua.RegisterFunction </font>（注册到Lua中以后方法的名称，程序对象，程序的类型program.GetType().（传入C#中的方法名：需要是公有方法））</strong></p>
+
+<p><strong><font color="#FF1493" face="微软雅黑" size="4"> 注册静态方法</font></strong> <br>
+<strong><font face="Segoe UI Black" size="5"> lua.RegisterFunction </font> （注册到Lua中以后方法的名称，空，程序的类型 typeof(Program).（传入C#中的方法名：需要是公有方法））</strong></p>
+
+<p><strong><font color="#FF1493" face="微软雅黑" size="4"> 注册的方法必须是 public ，否则会找不到</font></strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180115013530535" alt="举个栗子黑白88" title=""></p>
+
+
+
+<pre class="prettyprint"><code class="hljs cs"><span class="hljs-keyword"><span class="hljs-keyword">using</span></span> System;
+<span class="hljs-keyword"><span class="hljs-keyword">using</span></span> LuaInterface; <span class="hljs-comment"><span class="hljs-comment">//引用命名空间</span></span>
+
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ChinarTest</span>
+{
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 测试类</span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+    {
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">static</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> <span class="hljs-title">Main</span>(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params">[] args</span>)
+        </span>{
+            Lua     lua     = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Lua();     <span class="hljs-comment"><span class="hljs-comment">//创建一个lua解释器</span></span>
+            Program program = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Program(); <span class="hljs-comment"><span class="hljs-comment">//声明一个对象</span></span>
+
+            <span class="hljs-comment"><span class="hljs-comment">//lua.RegisterFunction 注册方法（注册到Lua中以后方法的名称，程序对象，程序的类型program.GetType().（传入C#中的方法名：需要是公有方法））</span></span>
+            lua.RegisterFunction(<span class="hljs-string"><span class="hljs-string">"LuaChinarTest"</span></span>, program, program.GetType().GetMethod(<span class="hljs-string"><span class="hljs-string">"ChinarTest"</span></span>));
+            <span class="hljs-comment"><span class="hljs-comment">//然后用lua.DoString(Lua中方法名())调用测试</span></span>
+            lua.DoString(<span class="hljs-string"><span class="hljs-string">"LuaChinarTest()"</span></span>);
+
+            <span class="hljs-comment"><span class="hljs-comment">//lua.RegisterFunction 注册静态方法（注册到Lua中以后方法的名称，空，程序的类型 typeof(Program).（传入C#中的方法名：需要是公有方法））</span></span>
+            lua.RegisterFunction(<span class="hljs-string"><span class="hljs-string">"LuaChinarStaticTest"</span></span>, <span class="hljs-keyword"><span class="hljs-literal">null</span></span>, <span class="hljs-keyword"><span class="hljs-keyword">typeof</span></span>(Program).GetMethod(<span class="hljs-string"><span class="hljs-string">"ChinarStaticTest"</span></span>));
+            <span class="hljs-comment"><span class="hljs-comment">//然后用lua.DoString(Lua中静态方法名())调用测试</span></span>
+            lua.DoString(<span class="hljs-string"><span class="hljs-string">"LuaChinarStaticTest()"</span></span>);
+
+            Console.ReadKey(); <span class="hljs-comment"><span class="hljs-comment">//等待输入</span></span>
+        }
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 一个测试方法</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">ChinarTest</span></span></span><span class="hljs-function">(<span class="hljs-params"></span>)
+        </span>{
+            Console.WriteLine(<span class="hljs-string"><span class="hljs-string">"这是一个空方法"</span></span>);
+        }
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 一个静态测试方法</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">static</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">ChinarStaticTest</span></span></span><span class="hljs-function">(<span class="hljs-params"></span>)
+        </span>{
+            Console.WriteLine(<span class="hljs-string"><span class="hljs-string">"这个一个静态空方法"</span></span>);
+        }
+    }
+}</code></pre>
+
+<p><strong>输出结果：</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs">这是一个空方法
+这个一个静态空方法</code></pre>
+
+<hr>
+
+
+
+<h1 id="6"><font size="7"><strong>6</strong></font></h1>
+
+
+
+<h2 id="require-lua中引用c中的类"><strong><font face="Segoe UI Black" size="6">  require  </font> —— Lua中引用C#中的类 </strong></h2>
+
+<p><br></p>
+
+<p><strong><font color="#FF1493" face="微软雅黑" size="4"> <font face="Segoe UI Black" size="5">  Lua </font>调用<font face="Segoe UI Black" size="5">  C# </font>的类需要：<font face="Segoe UI Black" size="5">  LuaInterface.dll </font>和<font face="Segoe UI Black" size="5"> luanet.dll </font></font></strong></p>
+
+<p><strong><font face="Segoe UI Black" size="5"> luanet.dll </font>拷贝到工程<font face="Segoe UI Black" size="5"> DeBug </font>输出目录中</strong></p>
+
+<p><strong><font face="Segoe UI Black" size="5"> lua </font>脚本中就不需要使用<font face="Segoe UI Black" size="5"> package.cpath </font>和<font face="Segoe UI Black" size="5"> require </font>了</strong></p>
+
+<p><strong>这点，在第一步 配置引用信息的时候，就做过了，如果没有做的报错了。请返回第一步</strong> <br>
+<br><br></p>
+
+<p><strong><font color="#1E90FF">报错点1：</font></strong> <br>
+<strong><font color="#FF1493" face="Segoe UI Black" size="5"> require “luanet” ：如果DeBug中有luanet.dll文件，则不需要在Lua脚本中再次引用</font> </strong></p>
+
+<p><strong>否则会报错：</strong> <br>
+<strong>“LuaInterface.LuaException”类型的未经处理的异常在 LuaInterface.dll 中发生，其他信息: error loading module ‘luanet’ from file ‘.\luanet.dll’</strong> <br>
+<br><br></p>
+
+<p><strong><font color="#1E90FF">报错点2：</font></strong> <br>
+<strong>另外，修改<font face="Segoe UI Black" size="5"> ChinarClass.lua </font>的属性后，一定要保存，不然还会报错找不到文件</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180115013530535" alt="举个栗子黑白88" title=""></p>
+
+
+
+<pre class="prettyprint"><code class="hljs cs"><span class="hljs-keyword"><span class="hljs-keyword">using</span></span> System;
+<span class="hljs-keyword"><span class="hljs-keyword">using</span></span> LuaInterface; <span class="hljs-comment"><span class="hljs-comment">//引用命名空间</span></span>
+
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ChinarTest</span>
+{
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 测试类</span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+    {
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">static</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> <span class="hljs-title">Main</span>(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params">[] args</span>)
+        </span>{
+            Lua lua = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Lua();           <span class="hljs-comment"><span class="hljs-comment">//创建一个lua解释器</span></span>
+            lua.DoFile(<span class="hljs-string"><span class="hljs-string">"ChinarClass.lua"</span></span>); <span class="hljs-comment"><span class="hljs-comment">//Lua引用C#中的类</span></span>
+            Console.ReadKey();             <span class="hljs-comment"><span class="hljs-comment">//等待输入</span></span>
+        }
+
+
+        <span class="hljs-keyword"><span class="hljs-keyword">public</span></span> <span class="hljs-keyword"><span class="hljs-keyword">int</span></span>    ChinarNum = <span class="hljs-number"><span class="hljs-number">60</span></span>;       <span class="hljs-comment"><span class="hljs-comment">//整形变量</span></span>
+        <span class="hljs-keyword"><span class="hljs-keyword">public</span></span> <span class="hljs-keyword"><span class="hljs-keyword">string</span></span> Name      = <span class="hljs-string"><span class="hljs-string">"Chinar"</span></span>; <span class="hljs-comment"><span class="hljs-comment">//字符串变量</span></span>
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 用来让Lua脚本测试的方法</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">ChinarTestFun</span></span></span><span class="hljs-function">(<span class="hljs-params"></span>)
+        </span>{
+            Console.WriteLine(<span class="hljs-string"><span class="hljs-string">"你好,Chinar"</span></span>);
+        }
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> Ref方法，参数</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;param name="name"&gt;</span></span></span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/param&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;param name="count"&gt;</span></span></span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/param&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">TestRef</span></span></span><span class="hljs-function">(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params"> name, </span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">ref</span></span></span></span><span class="hljs-function"><span class="hljs-params"> </span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> count</span>)
+        </span>{
+            Console.WriteLine(name);
+            Console.WriteLine(count);
+            count = name.Length;
+        }
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> Out方法，参数</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;param name="name"&gt;</span></span></span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/param&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;param name="count"&gt;</span></span></span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/param&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">TestOut</span></span></span><span class="hljs-function">(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params"> name, </span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">out</span></span></span></span><span class="hljs-function"><span class="hljs-params"> </span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> count</span>)
+        </span>{
+            Console.WriteLine(name);
+            count = name.Length;
+        }
+    }
+}</code></pre>
+
+<p><strong>输出结果：</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs avrasm css"><span class="hljs-selector-tag">ProxyType</span>(<span class="hljs-selector-tag">System</span><span class="hljs-preprocessor"><span class="hljs-selector-class">.Int</span></span><span class="hljs-selector-class">32</span>): <span class="hljs-number">46104728</span>
+<span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span>
+<span class="hljs-number">60</span>
+你好,<span class="hljs-selector-tag">Chinar</span>
+<span class="hljs-selector-tag">chinar</span><span class="hljs-preprocessor"><span class="hljs-selector-class">.fun</span></span>
+<span class="hljs-selector-tag">nil</span>     <span class="hljs-number">10</span>
+<span class="hljs-selector-tag">chinar</span><span class="hljs-preprocessor"><span class="hljs-selector-class">.fun</span></span>
+<span class="hljs-number">8</span>
+<span class="hljs-selector-tag">nil</span>     <span class="hljs-number">10</span></code></pre>
+
+<hr>
+
+
+
+<h1 id="7"><font size="7"><strong>7</strong></font></h1>
+
+
+
+<h2 id="all-全脚本数据"><strong><font face="Segoe UI Black" size="6">  All   </font> —— 全脚本数据 </strong></h2>
+
+<p><br></p>
+
+<p><strong>整个脚本项目</strong></p>
+
+<p><strong>1个C#脚本 2个Lua脚本</strong></p>
+
+<p><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180115013530535" alt="举个栗子黑白88" title=""></p>
+
+
+
+<pre class="prettyprint"><code class="hljs cs"><span class="hljs-keyword"><span class="hljs-keyword">using</span></span> System;
+<span class="hljs-keyword"><span class="hljs-keyword">using</span></span> LuaInterface; <span class="hljs-comment"><span class="hljs-comment">//引用命名空间</span></span>
+
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ChinarTest</span>
+{
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 测试类</span></span>
+    <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+    {
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">static</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> <span class="hljs-title">Main</span>(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params">[] args</span>)
+        </span>{
+            Lua lua = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Lua(); <span class="hljs-comment"><span class="hljs-comment">//创建一个lua解释器</span></span>
+
+
+            lua[<span class="hljs-string"><span class="hljs-string">"num"</span></span>] = <span class="hljs-number"><span class="hljs-number">66</span></span>;               <span class="hljs-comment"><span class="hljs-comment">//用C#脚本在lua环境中，创建一个变量</span></span>
+            lua[<span class="hljs-string"><span class="hljs-string">"str"</span></span>] = <span class="hljs-string"><span class="hljs-string">"chinar"</span></span>;         <span class="hljs-comment"><span class="hljs-comment">//用C#脚本在lua环境中，创建一个字符串变量</span></span>
+            Console.WriteLine(lua[<span class="hljs-string"><span class="hljs-string">"num"</span></span>]); <span class="hljs-comment"><span class="hljs-comment">//输出</span></span>
+            Console.WriteLine(lua[<span class="hljs-string"><span class="hljs-string">"str"</span></span>]); <span class="hljs-comment"><span class="hljs-comment">//输出</span></span>
+
+
+            lua.DoString(<span class="hljs-string"><span class="hljs-string">"num=666"</span></span>);                          <span class="hljs-comment"><span class="hljs-comment">//用C#脚本在lua环境中，创建一段lua脚本：num=666</span></span>
+            lua.DoString(<span class="hljs-string"><span class="hljs-string">"str='chianr666'"</span></span>);                  <span class="hljs-comment"><span class="hljs-comment">//用C#脚本在lua环境中，创建一段lua脚本：str='chianr666'</span></span>
+            <span class="hljs-keyword"><span class="hljs-keyword">object</span></span>[] values = lua.DoString(<span class="hljs-string"><span class="hljs-string">"return num,str"</span></span>); <span class="hljs-comment"><span class="hljs-comment">//用一个object数组 去接受返回值</span></span>
+            <span class="hljs-keyword"><span class="hljs-keyword">foreach</span></span> (<span class="hljs-keyword"><span class="hljs-keyword">var</span></span> <span class="hljs-keyword"><span class="hljs-keyword">value</span></span> <span class="hljs-keyword"><span class="hljs-keyword">in</span></span> values)                     <span class="hljs-comment"><span class="hljs-comment">//遍历 values 数组中的元素</span></span>
+            {
+                Console.WriteLine(<span class="hljs-keyword"><span class="hljs-keyword">value</span></span>); <span class="hljs-comment"><span class="hljs-comment">//输出</span></span>
+            }
+
+
+            lua.DoFile(<span class="hljs-string"><span class="hljs-string">"Chinar.lua"</span></span>); <span class="hljs-comment"><span class="hljs-comment">//加载lua文件 —— lua.DoFile（文件名）</span></span>
+
+
+            Program program = <span class="hljs-keyword"><span class="hljs-keyword">new</span></span> Program(); <span class="hljs-comment"><span class="hljs-comment">//声明一个对象</span></span>
+            <span class="hljs-comment"><span class="hljs-comment">//lua.RegisterFunction 注册方法（注册到Lua中以后方法的名称，程序对象，程序的类型program.GetType().（传入C#中的方法名：需要是公有方法））</span></span>
+            lua.RegisterFunction(<span class="hljs-string"><span class="hljs-string">"LuaChinarTest"</span></span>, program, program.GetType().GetMethod(<span class="hljs-string"><span class="hljs-string">"ChinarTest"</span></span>));
+            <span class="hljs-comment"><span class="hljs-comment">//然后用lua.DoString(Lua中方法名())调用测试</span></span>
+            lua.DoString(<span class="hljs-string"><span class="hljs-string">"LuaChinarTest()"</span></span>);
+
+            <span class="hljs-comment"><span class="hljs-comment">//lua.RegisterFunction 注册静态方法（注册到Lua中以后方法的名称，空，程序的类型 typeof(Program).（传入C#中的方法名：需要是公有方法））</span></span>
+            lua.RegisterFunction(<span class="hljs-string"><span class="hljs-string">"LuaChinarStaticTest"</span></span>, <span class="hljs-keyword"><span class="hljs-literal">null</span></span>, <span class="hljs-keyword"><span class="hljs-keyword">typeof</span></span>(Program).GetMethod(<span class="hljs-string"><span class="hljs-string">"ChinarStaticTest"</span></span>));
+            <span class="hljs-comment"><span class="hljs-comment">//然后用lua.DoString(Lua中静态方法名())调用测试</span></span>
+            lua.DoString(<span class="hljs-string"><span class="hljs-string">"LuaChinarStaticTest()"</span></span>);
+
+
+            lua.DoFile(<span class="hljs-string"><span class="hljs-string">"ChinarClass.lua"</span></span>); <span class="hljs-comment"><span class="hljs-comment">//Lua引用C#中的类</span></span>
+
+
+            Console.ReadKey(); <span class="hljs-comment"><span class="hljs-comment">//等待输入</span></span>
+        }
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 一个测试方法</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">ChinarTest</span></span></span><span class="hljs-function">(<span class="hljs-params"></span>)
+        </span>{
+            Console.WriteLine(<span class="hljs-string"><span class="hljs-string">"这是一个空方法"</span></span>);
+        }
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 一个静态测试方法</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">static</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">ChinarStaticTest</span></span></span><span class="hljs-function">(<span class="hljs-params"></span>)
+        </span>{
+            Console.WriteLine(<span class="hljs-string"><span class="hljs-string">"这个一个静态空方法"</span></span>);
+        }
+
+
+        <span class="hljs-keyword"><span class="hljs-keyword">public</span></span> <span class="hljs-keyword"><span class="hljs-keyword">int</span></span>    ChinarNum = <span class="hljs-number"><span class="hljs-number">60</span></span>;       <span class="hljs-comment"><span class="hljs-comment">//整形变量</span></span>
+        <span class="hljs-keyword"><span class="hljs-keyword">public</span></span> <span class="hljs-keyword"><span class="hljs-keyword">string</span></span> Name      = <span class="hljs-string"><span class="hljs-string">"Chinar"</span></span>; <span class="hljs-comment"><span class="hljs-comment">//字符串变量</span></span>
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> 用来让Lua脚本测试的方法</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">ChinarTestFun</span></span></span><span class="hljs-function">(<span class="hljs-params"></span>)
+        </span>{
+            Console.WriteLine(<span class="hljs-string"><span class="hljs-string">"你好,Chinar"</span></span>);
+        }
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> Ref方法，参数</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;param name="name"&gt;</span></span></span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/param&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;param name="count"&gt;</span></span></span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/param&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">TestRef</span></span></span><span class="hljs-function">(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params"> name, </span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">ref</span></span></span></span><span class="hljs-function"><span class="hljs-params"> </span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> count</span>)
+        </span>{
+            Console.WriteLine(name);
+            Console.WriteLine(count);
+            count = name.Length;
+        }
+
+
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> Out方法，参数</span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/summary&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;param name="name"&gt;</span></span></span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/param&gt;</span></span></span></span>
+        <span class="hljs-comment"><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">///</span></span></span><span class="hljs-comment"> </span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;param name="count"&gt;</span></span></span><span class="hljs-xmlDocTag"><span class="hljs-comment"><span class="hljs-doctag">&lt;/param&gt;</span></span></span></span>
+        <span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">TestOut</span></span></span><span class="hljs-function">(</span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">string</span></span></span></span><span class="hljs-function"><span class="hljs-params"> name, </span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">out</span></span></span></span><span class="hljs-function"><span class="hljs-params"> </span></span><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> count</span>)
+        </span>{
+            Console.WriteLine(name);
+            count = name.Length;
+        }
+    }
+}</code></pre>
+
+<p><strong><font face="Segoe UI Black" size="5"> Chinar.lua </font>文件</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs lua"><span class="hljs-built_in"><span class="hljs-built_in">print</span></span>(<span class="hljs-string"><span class="hljs-string">'I am Chianr'</span></span>)
+MyTable={<span class="hljs-number"><span class="hljs-number">1</span></span>,<span class="hljs-number"><span class="hljs-number">22</span></span>,<span class="hljs-number"><span class="hljs-number">333</span></span>,<span class="hljs-number"><span class="hljs-number">4444</span></span>,<span class="hljs-number"><span class="hljs-number">55555</span></span>,<span class="hljs-number"><span class="hljs-number">666666</span></span>}
+<span class="hljs-built_in"><span class="hljs-built_in">print</span></span>(<span class="hljs-built_in"><span class="hljs-built_in">table</span></span>.<span class="hljs-built_in">concat</span>(MyTable)..<span class="hljs-string"><span class="hljs-string">'I am Chianr'</span></span>)</code></pre>
+
+<p><strong><font face="Segoe UI Black" size="5"> ChinarClass.lua </font>文件</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs haml lua"><span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 如果</span><span class="hljs-constant"><span class="hljs-comment">DeBug</span></span><span class="hljs-comment">中有luanet.dll文件，则不需要再次引用</span>
+</span><span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- </span><span class="hljs-keyword"><span class="hljs-comment">require</span></span><span class="hljs-comment"> </span><span class="hljs-string"><span class="hljs-comment">"luanet"</span></span>
+</span><span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 加载</span><span class="hljs-constant"><span class="hljs-comment">CLR</span></span><span class="hljs-comment">类型(</span><span class="hljs-string"><span class="hljs-comment">"命名空间"</span></span><span class="hljs-comment">)</span>
+</span>luanet.load_assembly(<span class="hljs-string">"System"</span>)
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 加载命名空间下的类</span>
+</span>Int32 = luanet.import_type(<span class="hljs-string">"System.Int32"</span>)
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 输出</span>
+</span><span class="hljs-built_in">print</span>(Int32)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'- - - - - - - - - - - - - - - - - - - - - - - - - - '</span>)
+
+
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 加载</span><span class="hljs-constant"><span class="hljs-comment">CLR</span></span><span class="hljs-comment">类型(</span><span class="hljs-string"><span class="hljs-comment">"命名空间"</span></span><span class="hljs-constant"><span class="hljs-comment">ChinarTest</span></span><span class="hljs-comment">)</span>
+</span>luanet.load_assembly(<span class="hljs-string">"ChinarTest"</span>)
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 加载命名空间下的类</span><span class="hljs-constant"><span class="hljs-comment">Program</span></span>
+</span>Pro=luanet.import_type(<span class="hljs-string">"ChinarTest.Program"</span>)
+
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 实例化一个类对象</span>
+</span>pro=Pro()
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 输出</span>
+</span><span class="hljs-built_in">print</span>(pro.ChinarNum)
+
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 调用</span><span class="hljs-constant"><span class="hljs-comment">C</span></span><span class="hljs-comment"><span class="hljs-comment">#中的方法</span></span>
+</span>pro:ChinarTestFun()
+
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 调用</span><span class="hljs-constant"><span class="hljs-comment">Out</span></span><span class="hljs-comment">方法，out参数不需要传入值，会直接返回类型为一个：表</span>
+</span><span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 由于</span><span class="hljs-constant"><span class="hljs-comment">C</span></span><span class="hljs-comment"><span class="hljs-comment">#那边是一个空返回值的方法，所以第一个返回为空</span></span>
+</span><span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- 第二个返回 out参数</span>
+</span>void,stringCount=pro:TestOut(<span class="hljs-string">"chinar.fun"</span>)
+<span class="hljs-built_in">print</span>(void,stringCount)
+
+<span class="hljs-comment">-</span><span class="ruby"><span class="hljs-comment">- </span><span class="hljs-constant"><span class="hljs-comment">Ref</span></span><span class="hljs-comment">参数</span>
+</span>void1,stringCount1=pro:TestRef(<span class="hljs-string">"chinar.fun"</span>,<span class="hljs-number">8</span>)
+<span class="hljs-built_in">print</span>(void1,stringCount1)</code></pre>
+
+<p><strong>输出结果：</strong></p>
+
+
+
+<pre class="prettyprint"><code class="hljs avrasm css"><span class="hljs-number">66</span>
+<span class="hljs-selector-tag">chinar</span>
+<span class="hljs-number">666</span>
+<span class="hljs-selector-tag">chianr666</span>
+<span class="hljs-selector-tag">I</span> <span class="hljs-selector-tag">am</span> <span class="hljs-selector-tag">Chianr</span>
+<span class="hljs-number">122333444455555666666</span><span class="hljs-selector-tag">I</span> <span class="hljs-selector-tag">am</span> <span class="hljs-selector-tag">Chianr</span>
+这是一个空方法
+这个一个静态空方法
+<span class="hljs-selector-tag">ProxyType</span>(<span class="hljs-selector-tag">System</span><span class="hljs-preprocessor"><span class="hljs-selector-class">.Int</span></span><span class="hljs-selector-class">32</span>): <span class="hljs-number">12289376</span>
+<span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">-</span>
+<span class="hljs-number">60</span>
+你好,<span class="hljs-selector-tag">Chinar</span>
+<span class="hljs-selector-tag">chinar</span><span class="hljs-preprocessor"><span class="hljs-selector-class">.fun</span></span>
+<span class="hljs-selector-tag">nil</span>     <span class="hljs-number">10</span>
+<span class="hljs-selector-tag">chinar</span><span class="hljs-preprocessor"><span class="hljs-selector-class">.fun</span></span>
+<span class="hljs-number">8</span>
+<span class="hljs-selector-tag">nil</span>     <span class="hljs-number">10</span>
+</code></pre>
+
+<hr>
+
+
+
+<h1 id="8"><font size="7"><strong>8</strong></font></h1>
+
+
+
+<h2 id="error-常见报错点"><strong><font face="Segoe UI Black" size="6"> Error </font> —— 常见报错点</strong></h2>
+
+<p><br></p>
+
+<p><strong><font color="#1E90FF">报错点1：</font></strong> <br>
+<strong><font color="#FF1493" face="Segoe UI Black" size="5"> require “luanet” ：如果DeBug中有luanet.dll文件，则不需要在Lua脚本中再次引用</font> </strong></p>
+
+<p><strong>否则会报错：</strong> <br>
+<strong>“LuaInterface.LuaException”类型的未经处理的异常在 LuaInterface.dll 中发生，其他信息: error loading module ‘luanet’ from file ‘.\luanet.dll’</strong> <br>
+<br><br></p>
+
+<p><strong><font color="#1E90FF">报错点2：</font></strong> <br>
+<strong>另外，修改<font face="Segoe UI Black" size="5"> ChinarClass.lua </font>的属性后，一定要保存，不然还会报错找不到文件</strong> <br>
+<br><br></p>
+
+<p><strong><font color="#1E90FF">报错点3：</font></strong> <br>
+<strong><font color="#FF1493" face="微软雅黑" size="4"> 注册的方法必须是 public ，否则会找不到</font></strong> <br>
+<br><br></p>
+
+<p><strong><font color="#1E90FF">报错点4：</font></strong> <br>
+<strong><font color="#FF1493" face="微软雅黑" size="4"> 需要将写好的Lua文件拖到项目中，并且修改属性为 ：如果较新则复制 / 始终复制 </font></strong></p>
+
+<p><strong><font color="#FF1493" face="微软雅黑" size="4"> 否则会出现找不到文件的 报错信息</font></strong> <br>
+<br><br></p>
+
+<p><strong><font color="#1E90FF">报错点5：</font></strong> <br>
+<strong>找到项目中的目录，并将下载好的<font face="Segoe UI Black" size="5"> lua51.dll </font>、<font face="Segoe UI Black" size="5"> luanet.dll </font> 两个文件，拷贝到DeBug文件目录中</strong></p>
+
+<p><strong>这一步，在第一步就做好，一步到位！</strong></p>
+
+<hr>
+
+<p></p><center> <br>
+<img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/20180308020655856" width="50%" height="50%"> <br>
+<span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; /&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 0em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0em; height: 0px; font-size: 137%;"><span style="position: absolute; clip: rect(3.847em 1000em 4.139em -999.998em); top: -3.988em; left: 0em;"><span class="mrow" id="MathJax-Span-2"></span><span style="display: inline-block; width: 0px; height: 3.993em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.137em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"></math></span></span> <br>
+<strong><font color="#FF1493" size="6">Chinar</font></strong> <br>
+</center><p></p>
+
+<p><strong><a href="https://github.com/ChinarG/Tutorial--Lua" rel="nofollow">Chinar的GitHub工程案例</a></strong></p>
+
+<p><strong>直接Down下来运行即可</strong></p>
+
+<hr>
+
+<p></p><center><font face="Segoe UI Black" size="7"> END</font> <br>
+<br></center><p></p>
+
+<p><font face="微软雅黑" size="5"> 本博客为非营利性个人原创，除部分有明确署名的作品外，所刊登的所有作品的著作权均为本人所拥有，本人保留所有法定权利。违者必究 <br>
+<br>对于需要复制、转载、链接和传播博客文章或内容的，请及时和本博主进行联系，留言，Email:  ichinar@icloud.com <br>
+<br>对于经本博主明确授权和许可使用文章及内容的，使用时请注明文章或内容出处并注明网址</font></p>            </div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="https://www.cnblogs.com/chinarbolg/category/1295345.html" target="_blank">Unity 3D                    </a>,<a href="https://www.cnblogs.com/chinarbolg/category/1295347.html" target="_blank">lua                    </a>,<a href="https://www.cnblogs.com/chinarbolg/category/1295353.html" target="_blank">c#                    </a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(9601452,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;747f3f98-f39e-43b1-8794-08d613826156&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/chinarbolg/" target="_blank"><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/chinarbolg/">Chinar</a><br>
+            <a href="http://home.cnblogs.com/u/chinarbolg/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/chinarbolg/followers">粉丝 - 3</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;747f3f98-f39e-43b1-8794-08d613826156&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(9601452,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(9601452,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/chinarbolg/p/9601453.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/chinarbolg/p/9601453.html" title="发布于2018-03-05 23:52">Unity3D-常用小功能详解，例子（得分变动效果、倒计时）</a><br><a href="https://www.cnblogs.com/chinarbolg/p/9601451.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/chinarbolg/p/9601451.html" title="发布于2018-03-09 23:47">Unity 3D中 Ulua-UGUI简单的Demo——热更新的具体流程、使用说明</a><br></div>
+</div>
+
+</div>
+		<p class="postfoot">
+			posted on <span id="post-date">2018-03-07 23:55</span> <a href="https://www.cnblogs.com/chinarbolg/">Chinar</a> 阅读(<span id="post_view_count">250</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=9601452" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#" onclick="AddToWz(9601452);return false;">收藏</a>
+		</p>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=458138,cb_entryId=9601452,cb_blogApp=currentBlogApp,cb_blogUserGuid='747f3f98-f39e-43b1-8794-08d613826156',cb_entryCreatedDate='2018/3/7 23:55:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+	</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="https://gitee.com/enterprises?from=bky-2" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-gitee&#39;)">【推荐】专业便捷的企业级代码托管服务 - Gitee 码云</a><br><a href="https://www.bagevent.com/event/2468856" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-GAITC&#39;)">【活动】2019第四届全球人工技术大会解码“智能+时代”</a><br></div>
+<div id="opt_under_post"></div>
+<script async="async" src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/gpt.js.下载"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c1" class="c_ad_block">
+    <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CLmew6OcwOECFcUNKgodn0QKYg"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/saved_resource.html"></iframe></div></div>
+</div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/jinjiyese153/p/6698864.html" target="_blank" onclick="clickRecomItmem(6698864)">Lua学习二----------Lua的基本语法</a><br>·  <a href="https://www.cnblogs.com/lyggqm/p/5382307.html" target="_blank" onclick="clickRecomItmem(5382307)">[lua]lua简介</a><br>·  <a href="https://www.cnblogs.com/bughui/p/7287129.html" target="_blank" onclick="clickRecomItmem(7287129)">Lua语法要点</a><br>·  <a href="https://www.cnblogs.com/ly4cn/archive/2006/08/04/467550.html" target="_blank" onclick="clickRecomItmem(467550)">Lua脚本语法说明（修订）</a><br>·  <a href="https://www.cnblogs.com/sunhongleibibi/p/9153162.html" target="_blank" onclick="clickRecomItmem(9153162)">Lua基本语法</a><br></div></div>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CLqew6OcwOECFcUNKgodn0QKYg"><div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true" src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/saved_resource(1).html"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/623444/" target="_blank">原来，737Max上的MCAS和我想的不完全一样</a><br> ·  <a href="https://news.cnblogs.com/n/623443/" target="_blank">消息称软银发债融资45亿美元 为日本史上最大规模发债</a><br> ·  <a href="https://news.cnblogs.com/n/623442/" target="_blank">哈啰单车调整北京地区计费规则 ：每15分钟1元</a><br> ·  <a href="https://news.cnblogs.com/n/623441/" target="_blank">腾讯游戏WeGame国际版正式上线 但商店中仅17款游戏</a><br> ·  <a href="https://news.cnblogs.com/n/623440/" target="_blank">瑞幸和星巴克完全不同 上一个这样烧钱的公司叫黄太吉</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+        
+</div>
+<div id="rightmenu">
+    
+        
+<h3>公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/chinarbolg/">Chinar</a><br>园龄：<a href="https://home.cnblogs.com/u/chinarbolg/" title="入园时间：2018-09-06">7个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/chinarbolg/followers/">3</a><br>关注：<a href="https://home.cnblogs.com/u/chinarbolg/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;747f3f98-f39e-43b1-8794-08d613826156&#39;)">+加关注</a></div><script>getFollowStatus('747f3f98-f39e-43b1-8794-08d613826156')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+
+        
+<h3>导航</h3>
+<ul>
+			<li><a id="blog_nav_sitehome" href="https://www.cnblogs.com/">博客园</a></li>
+			<li><a id="blog_nav_myhome" href="https://www.cnblogs.com/chinarbolg/">首页</a></li>
+			<li><a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+			<li><a id="blog_nav_contact" accesskey="9" rel="nofollow" href="https://msg.cnblogs.com/send/Chinar">联系</a></li>
+			<li><a id="blog_nav_rss" href="https://www.cnblogs.com/chinarbolg/rss">订阅</a><a id="blog_nav_rss_image" href="https://www.cnblogs.com/chinarbolg/rss"><img src="./Lua基本语法-lua与C#的交互(相当简单详细的例子) - Chinar - 博客园_files/xml.gif" alt="订阅"></a>
+			</li><li><a id="blog_nav_admin" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+        <div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/03/01&#39;);return false;">&lt;</a></td><td align="center">2019年4月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/05/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td class="CalTodayDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr><tr><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td><td class="CalOtherMonthDay" align="center">11</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+        <div id="blog_stats">
+<h3>统计</h3>
+	<ul>
+		<li>随笔 - 137
+		</li><li>文章 - 0
+		</li><li>评论 - 0
+		</li><li>引用 - 0
+	</li>
+</ul></div>
+        <div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/chinarbolg/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/chinarbolg/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/chinarbolg/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/chinarbolg/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/chinarbolg/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+		<h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/chinarbolg/category/1295360.html">Algorithm                    (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/chinarbolg/category/1295359.html">Android                    (7)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/chinarbolg/category/1295361.html">AR                    (3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/chinarbolg/category/1295353.html">c#                    (33)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/chinarbolg/category/1295356.html">Demo                    (62)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/chinarbolg/category/1295348.html">GitHub                    (3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/chinarbolg/category/1295357.html">Java                    (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/chinarbolg/category/1295347.html">lua                    (13)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/chinarbolg/category/1295349.html">markdown                    (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/chinarbolg/category/1295363.html">PC                    (9)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/chinarbolg/category/1295364.html">Python                    (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_11" href="https://www.cnblogs.com/chinarbolg/category/1295358.html">Servers                    (5)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_12" href="https://www.cnblogs.com/chinarbolg/category/1295354.html">Shader                    (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_13" href="https://www.cnblogs.com/chinarbolg/category/1295362.html">UGUI                    (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_14" href="https://www.cnblogs.com/chinarbolg/category/1295345.html">Unity 3D                    (120)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_15" href="https://www.cnblogs.com/chinarbolg/category/1295346.html">Visual Studio                    (10)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_16" href="https://www.cnblogs.com/chinarbolg/category/1295352.html">xml                    (3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_17" href="https://www.cnblogs.com/chinarbolg/category/1295351.html">xml解析                    (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_18" href="https://www.cnblogs.com/chinarbolg/category/1295350.html">插件                    (24)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_19" href="https://www.cnblogs.com/chinarbolg/category/1295355.html">游戏                    (37)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/chinarbolg/archive/2018/09.html">2018年9月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/chinarbolg/archive/2018/08.html">2018年8月 (11)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/chinarbolg/archive/2018/07.html">2018年7月 (16)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/chinarbolg/archive/2018/06.html">2018年6月 (18)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_4" href="https://www.cnblogs.com/chinarbolg/archive/2018/05.html">2018年5月 (20)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_5" href="https://www.cnblogs.com/chinarbolg/archive/2018/04.html">2018年4月 (16)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_6" href="https://www.cnblogs.com/chinarbolg/archive/2018/03.html">2018年3月 (20)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_7" href="https://www.cnblogs.com/chinarbolg/archive/2018/02.html">2018年2月 (12)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_8" href="https://www.cnblogs.com/chinarbolg/archive/2018/01.html">2018年1月 (9)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_9" href="https://www.cnblogs.com/chinarbolg/archive/2017/12.html">2017年12月 (13)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_10" href="https://www.cnblogs.com/chinarbolg/archive/2017/11.html">2017年11月 (1)</a> </li>
+			
+				</ul>
+			
+	</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap" style="display: none;">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"></div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/chinarbolg/p/9601376.html">1. Unity在UI界面上显示3D模型/物体，控制模型旋转(1111)</a></li><li><a href="https://www.cnblogs.com/chinarbolg/p/9601359.html">2. Unity中对系统类进行扩展的方法(384)</a></li><li><a href="https://www.cnblogs.com/chinarbolg/p/9601432.html">3. Unity 3D调用Windows打开、保存窗口、文件浏览器(333)</a></li><li><a href="https://www.cnblogs.com/chinarbolg/p/9601452.html">4. Lua基本语法-lua与C#的交互(相当简单详细的例子)(250)</a></li><li><a href="https://www.cnblogs.com/chinarbolg/p/9601473.html">5. Unity 3D的常用快捷键(230)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+    
+</div>
+</div>
+<div class="clear"></div>
+
+<div id="footer">
+	Powered by: 
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="https://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>	Copyright © Chinar
+</div>
+
+
+
+
+</body></html>

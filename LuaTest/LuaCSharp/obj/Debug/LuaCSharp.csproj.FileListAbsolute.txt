@@ -1,0 +1,7 @@
+E:\Foolyoo\LuaTest\LuaCSharp\bin\Debug\LuaCSharp.exe.config
+E:\Foolyoo\LuaTest\LuaCSharp\bin\Debug\LuaCSharp.exe
+E:\Foolyoo\LuaTest\LuaCSharp\bin\Debug\LuaCSharp.pdb
+E:\Foolyoo\LuaTest\LuaCSharp\obj\Debug\LuaCSharp.csprojAssemblyReference.cache
+E:\Foolyoo\LuaTest\LuaCSharp\obj\Debug\LuaCSharp.csproj.CoreCompileInputs.cache
+E:\Foolyoo\LuaTest\LuaCSharp\obj\Debug\LuaCSharp.exe
+E:\Foolyoo\LuaTest\LuaCSharp\obj\Debug\LuaCSharp.pdb

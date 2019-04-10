@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://www.byjth.com/lua/34.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>
+      Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结</title>
+    <meta name="keywords" content="闭眼就天黑,unity教程,cocos2dx资源,cocos2dx,byjth,cocos2dx专栏,cocos2dx坐标系,cocos2dx教程,cocostudio,cocos2dx显示中文,cocoscreator,cocoscreator教程,cocoscreator源码,cocos2d-lua,lua开发环境,vs2015配置lua,win32搭建lua环境">
+    <meta name="description" content="">
+    <meta name="generator" content="emlog iitboy2.3.4">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="shortcut icon" href="https://www.byjth.com/favicon.ico">
+    <link rel="bookmark" href="https://www.byjth.com/favicon.ico">
+    <link href="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/main.css" rel="stylesheet" type="text/css">
+    <link href="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/csshake.min.css" rel="stylesheet">
+    <link href="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/animate.min.css" rel="stylesheet">
+    <link href="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.byjth.com/xmlrpc.php?rsd">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.byjth.com/wlwmanifest.xml">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.byjth.com/rss.php">
+    <script src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/push.js.下载"></script><script src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/common_tpl.js.下载" type="text/javascript"></script>
+    <script src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/jquery.min.js.下载" type="text/javascript"></script>
+	  <script language="javascript" src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/player.js.下载"></script>
+    <script type="text/javascript" src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/pjax.js.下载"></script>
+    <script>$(document).pjax('a[target!=_blank]', '#contentleftt', {fragment: '#contentleftt',timeout: 8000});
+      $(document).on('pjax:send',function() {
+        $(".loading,.loading2").css("display", "block");
+        $(".donghua").removeClass("animated bounceInDown");
+      });
+      $(document).on('pjax:complete',function() {
+        $(".loading,.loading2").css("display", "none");
+        $(".donghua").addClass("animated bounceInDown").show();
+		pajx_loadDuodsuo();
+        jQuery.getScript('https://www.byjth.com/content/templates/iitboy/js/iitboy.js');
+      });</script>
+	  
+  <script type="text/javascript" charset="gbk" src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/ui"></script></head>
+	
+  <body>
+    <div class="bg-fixed"></div>
+    <div class="donghua">
+      <div id="iitboy_logo">
+        <a href="https://www.byjth.com/" title="闭眼就天黑的博客">
+          <img src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/logo.png" class="animated tada" original="https://www.byjth.com/content/templates/iitboy/images/logo.png"></a>
+        <br>
+        <div id="tock" style="top:-3px">
+          <div class="hibox">
+            <div class="hi container">
+              <a href="javascript:;" onclick="getkoto();" title="换一条">
+                <span class="hitokoto" id="hitokoto">欢迎来到闭眼就天黑的博客~独立游戏QQ群：515753718！</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="hjsbox"></div>
+      <div id="sousuo2" title="在搜索框中输入关键字后，按“回车”即可搜到结果。">
+        <form name="keyform" method="get" action="https://www.byjth.com/index.php">
+          <input name="keyword" type="search" placeholder="框中输文字，回车索结果。"></form>
+      </div>
+      <div id="linkk">
+        <div id="menu" style="background-color: rgba(0,0,0,0.6);">
+          	<ul class="bar">
+			
+		<li class="item common">
+			<a href="https://www.byjth.com/" class="chaffle" data-lang="zh">首页</a>
+			
+            
+		</li>
+			
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/game" class="chaffle" data-lang="zh">游戏开发技术</a>
+			            <ul class="sub-nav">
+                <li><a href="https://www.byjth.com/sort/unity3d" class="chaffle" data-lang="zh">Unity3D</a></li><li><a href="https://www.byjth.com/sort/developer" class="chaffle" data-lang="zh">开发者相关</a></li><li><a href="https://www.byjth.com/sort/sdk" class="chaffle" data-lang="zh">渠道SDK</a></li><li><a href="https://www.byjth.com/sort/arithmetic" class="chaffle" data-lang="zh">算法学习</a></li><li><a href="https://www.byjth.com/sort/error" class="chaffle" data-lang="zh">解决的错</a></li>			</ul>
+            
+            
+		</li>
+			
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/cocos2dx" class="chaffle" data-lang="zh">cocos2dx专栏</a>
+			            <ul class="sub-nav">
+                <li><a href="https://www.byjth.com/sort/tools" class="chaffle" data-lang="zh">cocos2dx工具</a></li><li><a href="https://www.byjth.com/sort/biji" class="chaffle" data-lang="zh">cocos2dx学习</a></li><li><a href="https://www.byjth.com/sort/network" class="chaffle" data-lang="zh">cocos2dx网络</a></li>			</ul>
+            
+            
+		</li>
+			
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/CocosCreator" class="chaffle" data-lang="zh">CocosCreator</a>
+			            <ul class="sub-nav">
+                <li><a href="https://www.byjth.com/sort/QiangYueBing" class="chaffle" data-lang="zh">《抢月饼》</a></li><li><a href="https://www.byjth.com/sort/popstar" class="chaffle" data-lang="zh">《消灭星星》</a></li><li><a href="https://www.byjth.com/sort/jixiantiaoyue" class="chaffle" data-lang="zh">《极限跳跃》</a></li><li><a href="https://www.byjth.com/sort/ccc" class="chaffle" data-lang="zh">CCC学习总结</a></li>			</ul>
+            
+            
+		</li>
+			
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/qipai" class="chaffle" data-lang="zh">棋牌游戏专栏</a>
+			            <ul class="sub-nav">
+                <li><a href="https://www.byjth.com/sort/wanghu" class="chaffle" data-lang="zh">网狐搭建教程</a></li><li><a href="https://www.byjth.com/sort/wanghuerror" class="chaffle" data-lang="zh">网狐错误修复</a></li><li><a href="https://www.byjth.com/sort/qpdev" class="chaffle" data-lang="zh">棋牌开发分享</a></li>			</ul>
+            
+            
+		</li>
+			
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/programme" class="chaffle" data-lang="zh">编程开发学习</a>
+			            <ul class="sub-nav">
+                <li><a href="https://www.byjth.com/sort/lua" class="chaffle" data-lang="zh">Lua学习</a></li><li><a href="https://www.byjth.com/sort/cpp" class="chaffle" data-lang="zh">C++学习</a></li><li><a href="https://www.byjth.com/sort/android" class="chaffle" data-lang="zh">Android开发</a></li>			</ul>
+            
+            
+		</li>
+			
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/yunying" class="chaffle" data-lang="zh">网站站长专栏</a>
+			            <ul class="sub-nav">
+                <li><a href="https://www.byjth.com/sort/discuz" class="chaffle" data-lang="zh">Discuz技巧</a></li><li><a href="https://www.byjth.com/sort/wecenter" class="chaffle" data-lang="zh">WeCenter</a></li><li><a href="https://www.byjth.com/sort/fwqwh" class="chaffle" data-lang="zh">服务器维护</a></li><li><a href="https://www.byjth.com/sort/emlog" class="chaffle" data-lang="zh">emlog博客</a></li><li><a href="https://www.byjth.com/sort/dedecms" class="chaffle" data-lang="zh">DEDECMS</a></li><li><a href="https://www.byjth.com/sort/zatan" class="chaffle" data-lang="zh">站长杂谈</a></li>			</ul>
+            
+            
+		</li>
+			
+		<li class="item common">
+			<a href="https://www.27ki.com/" target="_blank" class="chaffle" data-lang="zh">开发者社区</a>
+			
+            
+		</li>
+		</ul>
+</div>
+        <div id="menu2">
+          	<div class="daohang2">
+		
+		<li class="item common">
+			<a href="https://www.byjth.com/" class="shake shake-little">首页</a>&nbsp;&nbsp;&nbsp;
+		</li>
+		
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/game" class="shake shake-little">游戏开发技术</a>&nbsp;&nbsp;&nbsp;
+		</li>
+		
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/cocos2dx" class="shake shake-little">cocos2dx专栏</a>&nbsp;&nbsp;&nbsp;
+		</li>
+		
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/CocosCreator" class="shake shake-little">CocosCreator</a>&nbsp;&nbsp;&nbsp;
+		</li>
+		
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/qipai" class="shake shake-little">棋牌游戏专栏</a>&nbsp;&nbsp;&nbsp;
+		</li>
+		
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/programme" class="shake shake-little">编程开发学习</a>&nbsp;&nbsp;&nbsp;
+		</li>
+		
+		<li class="item common">
+			<a href="https://www.byjth.com/sort/yunying" class="shake shake-little">网站站长专栏</a>&nbsp;&nbsp;&nbsp;
+		</li>
+		
+		<li class="item common">
+			<a href="https://www.27ki.com/" target="_blank" class="shake shake-little">开发者社区</a>&nbsp;&nbsp;&nbsp;
+		</li>
+		</div>
+</div>
+        		
+		
+		
+		<div id="content">
+<div id="contentleftt" style="background-color: rgba(255, 255, 255, 0.6);">
+
+<div class="biaoti" id="masked">Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二)</div>
+	<div class="date2">
+	<span class="home"></span><a href="https://www.byjth.com/" title="返回网站首页">首页</a> <b>&gt;</b>
+    <a href="https://www.byjth.com/sort/programme">编程开发学习</a> <b>&gt;</b> <a href="https://www.byjth.com/sort/lua">Lua学习</a>	<!--分类原代码 	    <a href="https://www.byjth.com/sort/lua">Lua学习</a>
+	 -->&nbsp;&nbsp;
+	<span class="pauthor"></span>作者：<a href="https://www.byjth.com/author/1" title="学习，思考，沉淀，升华，分享。独立游戏QQ群：515753718 153394579@qq.com">闭眼就天黑</a>&nbsp;&nbsp;
+	<span class="ptime"></span> 2015年10月17日 3:04 星期六&nbsp;&nbsp;
+	<span class="pview"></span>热度：18865°&nbsp;&nbsp;
+	百度已收录	<!-- 以下是原评论代码，如果你没用多说社会化评论，那么请把下面的“注释”取消就行了。 -->
+	<!--  6条评论&nbsp;&nbsp;&nbsp;&nbsp;  -->
+	<!-- 以下是调用多说社会化评论数据，如果你没用多说，请删除下面这条代码。-->
+
+	<a id="comments" href="https://www.byjth.com/lua/34.html#comments"><span class="ds-thread-count" data-thread-key="34"></span></a>&nbsp;
+		</div>
+	
+
+    <div class="date4">
+	时间：2015-10-17 3:04&nbsp;&nbsp;
+	热度：18865°&nbsp; 
+	<!-- 以下是调用多说社会化评论数据，如果你没用多说，请删除下面这条代码。 -->
+	<a href="https://www.byjth.com/lua/34.html#comments"><span class="ds-thread-count" data-thread-key="34"></span></a>
+	</div>
+	<div class="xiantiao"><img src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/xiantiao1.png" original="https://www.byjth.com/content/templates/iitboy/images/xiantiao1.png"></div>	
+	<div id="zoom"><p>
+	<span style="color:#000000;font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#000000;font-size:16px;">上一篇文章 </span><a href="http://www.byjth.com/lua/33.html" target="_blank"><span style="color:#e53333;font-size:16px;"><u><strong>Lua学习笔记1：Windows7下使用VS2015搭建Lua开发环境(一</strong></u></span><span style="color:#e53333;font-size:16px;"><u><strong>)</strong></u></span></a><span style="color:#000000;font-size:16px;"> 我们一起</span><span style="color:#000000;font-size:16px;">编译了lua5.3的库文件。下面我将分享下如何使用我们编译的lua库文件来搭建lua的开发环境。 </span>
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;"><strong>1、首先我们使用vs2015新建一个Win32控制台应用程序，命名为LuaTest。 </strong></span>
+</p>
+<p align="center">
+	<a id="ematt:218" href="http://www.byjth.com/content/uploadfile/201510/9ea71445022416.png" target="_blank"><img title="点击查看原图" border="0" alt="test1.png" src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/thum-9ea71445022416.png" width="680" height="574" original="http://www.byjth.com/content/uploadfile/201510/thum-9ea71445022416.png"></a> 
+</p>
+<p align="center">
+	<a id="ematt:220" href="http://www.byjth.com/content/uploadfile/201510/0f701445022423.png" target="_blank"><img title="点击查看原图" border="0" alt="test2.png" width="646" height="565" original="http://www.byjth.com/content/uploadfile/201510/0f701445022423.png"></a> 
+</p>
+<p align="center">
+	<span style="color:#000000;"></span>
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<strong><span style="color:#000000;font-size:16px;">2、配置lua项目头文件默认路径 </span></strong>
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;">在项目的“配置属性” 界面中操作选择【C/C++】—&gt; 【常规】—&gt; 【附加包含目录】，然后输入我们的lua源码路径D:\lua-5.3.1\src。如图所示： </span>
+</p>
+<p align="center">
+	<a id="ematt:221" href="http://www.byjth.com/content/uploadfile/201510/977c1445022486.png" target="_blank"><img title="点击查看原图" border="0" alt="test3.png" width="680" height="565" original="http://www.byjth.com/content/uploadfile/201510/thum-977c1445022486.png"></a>&nbsp;
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;"><strong>3、为项目添加.lib库引用 </strong></span>
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;">配置项目的属性，在项目的“配置属性” 界面中操作选择【链接器】—&gt; 【常规】—&gt; 【附加库目录】，然后输入我们的lua库文件目录，这个目录为我们上篇结尾处放置的位置。也就是我们的lua5.3的源码目录，D:\lua-5.3.1\。如图所示： </span>
+</p>
+<p align="center">
+	<a id="ematt:223" href="http://www.byjth.com/content/uploadfile/201510/24881445022510.png" target="_blank"><img title="点击查看原图" border="0" alt="test4.png" width="680" height="619" original="http://www.byjth.com/content/uploadfile/201510/thum-24881445022510.png"></a>&nbsp;
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;">配置项目的属性，在项目的“配置属性” 界面中操作选择【链接器】—&gt; 【输入】—&gt; 【附加依赖库】位置添加我们所编译的Lua5.3.lib库文件名称，然后确定即可。如图所示：</span> 
+</p>
+<p align="center">
+	<span style="font-size:16px;"><a id="ematt:225" href="http://www.byjth.com/content/uploadfile/201510/063c1445022536.png" target="_blank"><img title="点击查看原图" border="0" alt="test5.png" width="680" height="473" original="http://www.byjth.com/content/uploadfile/201510/thum-063c1445022536.png"></a>&nbsp;</span> 
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;">到此我们的lua开发环境算是配置好了，下面我们来测试我们自己搭建的lua环境。 </span>
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;">我们在源代码里创建一个main.lua的文件，如图所示 </span>
+</p>
+<p align="center">
+	<a id="ematt:227" href="http://www.byjth.com/content/uploadfile/201510/47bf1445022560.png" target="_blank"><img title="点击查看原图" border="0" alt="test6.png" width="680" height="584" original="http://www.byjth.com/content/uploadfile/201510/thum-47bf1445022560.png"></a>&nbsp;
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;">创建好后，我们在里面输入打印文本。如图所示： </span>
+</p>
+<p align="center">
+	<a id="ematt:229" href="http://www.byjth.com/content/uploadfile/201510/49131445022575.png" target="_blank"><img title="点击查看原图" border="0" alt="test7.png" width="571" height="506" original="http://www.byjth.com/content/uploadfile/201510/49131445022575.png"></a>&nbsp;
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;">然后在LuaTest.cpp主函数里面，我们引用标准输入输出以及lua的头文件，然后编写测试代码，这里是打印main.lua文件里的内容。如图所示： </span>
+</p>
+<p align="center">
+	<a id="ematt:230" href="http://www.byjth.com/content/uploadfile/201510/2c801445022592.png" target="_blank"><img title="点击查看原图" border="0" alt="test8.png" width="631" height="550" original="http://www.byjth.com/content/uploadfile/201510/2c801445022592.png"></a> 
+</p>
+<p align="center">
+	<a id="ematt:231" href="http://www.byjth.com/content/uploadfile/201510/37c71445022686.png" target="_blank"><img title="点击查看原图" border="0" alt="test9.png" width="662" height="600" original="http://www.byjth.com/content/uploadfile/201510/37c71445022686.png"></a>&nbsp;
+</p>
+<p>
+	<span style="color:#000000;font-size:16px;">到此,我们完整的lua环境就算搭建好了啊。哈哈。不知不觉半夜三点多了，搞定睡觉啦。。</span> 
+</p>
+<p>
+	<span style="font-size:16px;"></span><span style="color:#000000;">&nbsp;</span> 
+</p></div>
+	<div class="post-tags"><a rel="tag" href="https://www.byjth.com/tag/cocos2d-lua" title="cocos2d-lua">cocos2d-lua</a><a rel="tag" href="https://www.byjth.com/tag/lua%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" title="lua开发环境">lua开发环境</a><a rel="tag" href="https://www.byjth.com/tag/vs2015%E9%85%8D%E7%BD%AElua" title="vs2015配置lua">vs2015配置lua</a><a rel="tag" href="https://www.byjth.com/tag/win32%E6%90%AD%E5%BB%BAlua%E7%8E%AF%E5%A2%83" title="win32搭建lua环境">win32搭建lua环境</a></div> 
+	<div id="banquan">
+	<div class="tupian hint--right hint--rounded" title="这篇文章太棒了，我要分享给我的小伙伴们！
+	1、用手机扫二维码。2、点右上角分享就可以到朋友圈啦。">
+	<img rel="noffow" alt="二维码加载中..." original="http://qr.liantu.com/api.php?&amp;bg=ffffff&amp;w=100&amp;m=6&amp;fg=000000&amp;text=http://www.byjth.com/lua/34.html" style=""></div>
+<div class="xinxi">
+<span class="zuozhe">本文作者：</span><a href="https://www.byjth.com/author/1" title="学习，思考，沉淀，升华，分享。独立游戏QQ群：515753718 153394579@qq.com">闭眼就天黑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+<span class="biaoti2">文章标题：</span> <a href="https://www.byjth.com/lua/34.html">Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二)</a><br>
+<span class="blog_url">本文地址：</span><a href="https://www.byjth.com/lua/34.html">https://www.byjth.com/lua/34.html</a><br>
+<b>版权声明：</b>若无注明，本文皆为“<span class="blog_name">闭眼就天黑专栏_技术博客_个人学习总结</span>”原创，转载请保留文章出处。
+	</div><div id="gaodu1"></div></div>
+	<div class="cutline"><span><a href="https://www.byjth.com/lua/34.html" target="_blank">正文到此结束</a></span></div>
+	
+	<div class="rkdic">
+		
+	</div>
+	<div id="shangxiapian_2">		<div id="shangxiapian3">
+	<a href="https://www.byjth.com/lua/35.html">
+	<img onmouseover="this.src=&#39;https://www.byjth.com/content/templates/iitboy/images/shang1.png&#39;" onmouseout="this.src=&#39;https://www.byjth.com/content/templates/iitboy/images/shang2.png&#39;" original="https://www.byjth.com/content/templates/iitboy/images/shang2.png" style=""></a></div>
+			<div id="shangxiapian4"><a href="https://www.byjth.com/lua/33.html"><img onmouseover="this.src=&#39;https://www.byjth.com/content/templates/iitboy/images/xia1.png&#39;" onmouseout="this.src=&#39;https://www.byjth.com/content/templates/iitboy/images/xia2.png&#39;" original="https://www.byjth.com/content/templates/iitboy/images/xia2.png" style=""></a></div>
+	<div id="gaodu1"></div></div>
+	<div id="shangxiapian">		<div id="sxpbk1">
+<div id="wzlj1"><a href="https://www.byjth.com/lua/35.html"><i class="fa fa-arrow-circle-left"></i> lua学习笔记3：初识lua基本数据类型和基本语法</a></div></div>
+    		<div id="sxpbk2"><div id="wzlj1"><a href="https://www.byjth.com/lua/33.html">Lua学习笔记1：Windows7下使用VS2015搭建Lua开发环境(一) <i class="fa fa-arrow-circle-right"></i></a></div>
+		</div>
+	<div id="gaodu1"></div></div> 
+   <div class="gxq"><div class="bti"><i class="fa fa-folder-open"></i> <span class="chaffle" data-lang="zh">相关文章</span></div>
+            <ul>
+                    <li><i class="fa fa-dot-circle-o">
+            <a href="https://www.byjth.com/lua/36.html" title="查看文章:lua学习笔记4：初识lua中的表table" class="shake shake-little">lua学习笔记4：初识lua中的表table</a>
+            </i></li>
+                    <li><i class="fa fa-dot-circle-o">
+            <a href="https://www.byjth.com/lua/33.html" title="查看文章:Lua学习笔记1：Windows7下使用VS2015搭建Lua开发环境(一)" class="shake shake-little">Lua学习笔记1：Windows7下使用VS2015搭建Lua开发环境(一)</a>
+            </i></li>
+                    <li><i class="fa fa-dot-circle-o">
+            <a href="https://www.byjth.com/lua/34.html" title="查看文章:Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二)" class="shake shake-little">Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二)</a>
+            </i></li>
+                    <li><i class="fa fa-dot-circle-o">
+            <a href="https://www.byjth.com/lua/35.html" title="查看文章:lua学习笔记3：初识lua基本数据类型和基本语法" class="shake shake-little">lua学习笔记3：初识lua基本数据类型和基本语法</a>
+            </i></li>
+                </ul>
+	
+    <div id="gaodu1">
+<link rel="stylesheet" type="text/css" href="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/shThemeDefault.css"><script type="text/javascript" src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/brush.js.下载"></script><script type="text/javascript"> SyntaxHighlighter.config.clipboardSwf = "https://www.byjth.com/content/plugins/syntaxHighlighter/brush/clipboard.swf";SyntaxHighlighter.config.bloggerMode = true; SyntaxHighlighter.all();setTimeout(function(){$("div.syntaxhighlighter div.lines td.content").attr("nowrap","nowrap");$("div.syntaxhighlighter").hover(function(){$(this).css("overflow-x","auto")},function(){$(this).css("overflow-x","hidden")})},2000);</script>  <p>
+  <img align="left" original="http://chart.apis.google.com/chart?chs=80x80&amp;cht=qr&amp;chld=L|0&amp;chl=https://www.byjth.com/lua/34.html" style="">
+  版权所有：《<a style="color:red;" href="https://www.byjth.com/">闭眼就天黑专栏_技术博客_个人学习总结</a>》 =&gt; 《<a href="https://www.byjth.com/lua/34.html">Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二)</a>》<br>
+  本文地址：<a href="https://www.byjth.com/lua/34.html">https://www.byjth.com/lua/34.html</a><br>
+  除非注明，文章均为 《<a style="color:red;" href="https://www.byjth.com/">闭眼就天黑专栏_技术博客_个人学习总结</a>》 原创，欢迎转载！转载请注明本文地址，谢谢。<br>
+  </p>
+   </div></div>
+    
+		<a name="comments"></a>
+	<div id="comments" class="comment-header"></div>
+			<div class="comment" id="comment-418">
+		<a name="418"></a>
+				<div class="comment-info">
+			<div class="comment-content">楼主自己写的网站吗？牛逼！</div>
+			<div class="comment-reply"><a href="https://www.byjth.com/lua/34.html#comment-418" onclick="commentReply(418,this)">回复</a></div>
+		</div>
+			</div>
+		<div class="comment" id="comment-417">
+		<a name="417"></a>
+				<div class="comment-info">
+			<div class="comment-content">厉害！</div>
+			<div class="comment-reply"><a href="https://www.byjth.com/lua/34.html#comment-417" onclick="commentReply(417,this)">回复</a></div>
+		</div>
+			</div>
+		<div class="comment" id="comment-404">
+		<a name="404"></a>
+				<div class="comment-info">
+			<div class="comment-content">强！原来在VS下面编译Lua是在VS建.lua文件，受教了</div>
+			<div class="comment-reply"><a href="https://www.byjth.com/lua/34.html#comment-404" onclick="commentReply(404,this)">回复</a></div>
+		</div>
+			</div>
+		<div class="comment" id="comment-313">
+		<a name="313"></a>
+				<div class="comment-info">
+			<div class="comment-content">无法启动程序，显示不是有效的win32应用程序</div>
+			<div class="comment-reply"><a href="https://www.byjth.com/lua/34.html#comment-313" onclick="commentReply(313,this)">回复</a></div>
+		</div>
+			</div>
+		<div class="comment" id="comment-285">
+		<a name="285"></a>
+				<div class="comment-info">
+			<div class="comment-content">这里怎样可以进入调试呢？</div>
+			<div class="comment-reply"><a href="https://www.byjth.com/lua/34.html#comment-285" onclick="commentReply(285,this)">回复</a></div>
+		</div>
+			<div class="comment comment-children" id="comment-287">
+		<a name="287"></a>
+				<div class="comment-info">
+			<div class="comment-content">@sungs：打log吧。我没用过lua开发项目</div>
+			<div class="comment-reply"><a href="https://www.byjth.com/lua/34.html#comment-287" onclick="commentReply(287,this)">回复</a></div>		</div>
+			</div>
+		</div>
+	    <div id="pagemenui">
+	        </div>
+		<div id="comment-place">
+	<div class="comment-post" id="comment-post">
+		<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()">取消回复</a></div>
+		<div class="comment-header">
+						<a name="respond"></a></div>
+		<form method="post" name="commentform" action="https://www.byjth.com/index.php?action=addcom" id="commentform">
+			<input type="hidden" name="gid" value="34">
+						<p>
+				<input type="text" name="comname" maxlength="49" value="" size="22" tabindex="1">
+				<label for="author"><small>昵称</small></label>
+			</p>
+			<!-- <p>
+				<input type="text" name="commail"  maxlength="128"  value="" size="22" tabindex="2">
+				<label for="email"><small>邮件地址 (选填)</small></label>
+			</p>
+			<p>
+				<input type="text" name="comurl" maxlength="128"  value="https://www.byjth.com/" size="22" tabindex="3">
+				<label for="url"><small>个人主页 (选填)</small></label>
+			</p> <-->
+						<p><textarea name="comment" id="comment" rows="12" tabindex="4"></textarea></p>
+			<div class="fbpl"> <input type="submit" id="comment_submit" value="发表评论" tabindex="6"><span id="top2"><a href="javascript:void(0);" onclick="goTop();" class="hint--left hint--bounce" data-hint="返回顶部"><img original="https://www.byjth.com/content/templates/iitboy/images/top2.png" style=""></a></span><div id="gaodu1"></div></div>
+			<input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1">
+		</form>
+	</div>
+	</div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleftt-->
+		
+<div id="sidebar" style="background-color: rgba(255, 255, 255, 0.6);">
+	<div id="sousuo">
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="https://www.byjth.com/index.php">
+	<input name="keyword" class="search" type="text" onblur="if(this.value==&#39;&#39;){this.value=&#39;请输入搜索关键字&#39;;}" onfocus="this.value=&#39;&#39;;" value="请输入搜索关键字" title="丘比龙小提示：如果你要搜索内容，请在搜索框中输入关键词，然后按“回车”即可查询到结果。">
+    <input type="submit" name="submit" value="搜索" class="submit button" title="猛击我搜索">
+	</form>
+	</ul>
+	</div>
+	<div id="cundang">
+	<div id="cundang_biaoti"><span>存档</span></div>
+	<div id="cundang_biankuang">
+	<ul id="record">
+		<li><a href="https://www.byjth.com/record/201901">2019年1月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201809">2018年9月(2)</a></li>
+		<li><a href="https://www.byjth.com/record/201807">2018年7月(2)</a></li>
+		<li><a href="https://www.byjth.com/record/201806">2018年6月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201803">2018年3月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201712">2017年12月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201711">2017年11月(9)</a></li>
+		<li><a href="https://www.byjth.com/record/201710">2017年10月(2)</a></li>
+		<li><a href="https://www.byjth.com/record/201707">2017年7月(4)</a></li>
+		<li><a href="https://www.byjth.com/record/201706">2017年6月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201705">2017年5月(7)</a></li>
+		<li><a href="https://www.byjth.com/record/201703">2017年3月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201702">2017年2月(3)</a></li>
+		<li><a href="https://www.byjth.com/record/201612">2016年12月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201610">2016年10月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201609">2016年9月(13)</a></li>
+		<li><a href="https://www.byjth.com/record/201608">2016年8月(5)</a></li>
+		<li><a href="https://www.byjth.com/record/201607">2016年7月(3)</a></li>
+		<li><a href="https://www.byjth.com/record/201605">2016年5月(13)</a></li>
+		<li><a href="https://www.byjth.com/record/201604">2016年4月(8)</a></li>
+		<li><a href="https://www.byjth.com/record/201603">2016年3月(7)</a></li>
+		<li><a href="https://www.byjth.com/record/201601">2016年1月(6)</a></li>
+		<li><a href="https://www.byjth.com/record/201511">2015年11月(3)</a></li>
+		<li><a href="https://www.byjth.com/record/201510">2015年10月(4)</a></li>
+		<li><a href="https://www.byjth.com/record/201509">2015年9月(4)</a></li>
+		<li><a href="https://www.byjth.com/record/201508">2015年8月(19)</a></li>
+		<li><a href="https://www.byjth.com/record/201507">2015年7月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201505">2015年5月(1)</a></li>
+		<li><a href="https://www.byjth.com/record/201504">2015年4月(3)</a></li>
+		</ul><div id="gaodu1"></div></div></div>
+	<div id="suijiwenzhang">
+	<div id="suiji_biaoti"><span>随机文章</span></div>
+	<div id="suiji_biankuang"><div class="wenzhang">
+	<ul>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/jixiantiaoyue/69.html">CocosCreator零基础制作游戏《极限跳跃》四、添加游戏主场景控制脚本</a></li>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/jixiantiaoyue/70.html">CocosCreator零基础制作游戏《极限跳跃》五、制作游戏主场景背景滚动</a></li>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/jixiantiaoyue/71.html">CocosCreator零基础制作游戏《极限跳跃》六、制作游戏障碍物实现碰撞检测</a></li>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/jixiantiaoyue/72.html">CocosCreator零基础制作游戏《极限跳跃》七、制作游戏结束场景并实现场景切换</a></li>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/jixiantiaoyue/73.html">CocosCreator零基础制作游戏《极限跳跃》八、添加游戏积分系统</a></li>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/jixiantiaoyue/74.html">CocosCreator零基础制作游戏《极限跳跃》九、为游戏添加声音音效功能</a></li>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/jixiantiaoyue/75.html">CocosCreator零基础制作游戏《极限跳跃》十、游戏打包发布，游戏复总结</a></li>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/zatan/76.html">广告联盟外链js代码制作教程</a></li>
+		<li><i class="fa fa-pencil"></i>&nbsp;<a href="https://www.byjth.com/biji/77.html">xcode可以运行的游戏，VS编译提示代码有未声明的标识符</a></li>
+		</ul>
+	</div></div></div>
+	<div id="remenwenzhang">
+	<div id="remen_biaoti"><span>热门文章</span></div>
+	<div id="remen_biankuang"><div class="wenzhang">
+	<ul>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/jixiantiaoyue/66.html" title="CocosCreator零基础制作游戏《极限跳跃》一、游戏分析">CocosCreator零基础制作游戏《极限跳跃》一、游戏分析</a></li>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/lua/33.html" title="Lua学习笔记1：Windows7下使用VS2015搭建Lua开发环境(一)">Lua学习笔记1：Windows7下使用VS2015搭建Lua开发环境(一)</a></li>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/jixiantiaoyue/67.html" title="CocosCreator零基础制作游戏《极限跳跃》二、制作游戏开始场景">CocosCreator零基础制作游戏《极限跳跃》二、制作游戏开始场景</a></li>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/jixiantiaoyue/69.html" title="CocosCreator零基础制作游戏《极限跳跃》四、添加游戏主场景控制脚本">CocosCreator零基础制作游戏《极限跳跃》四、添加游戏主场景控制脚本</a></li>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/tools/41.html" title="CocoStudio使用笔记1：cocos2dx3.4加载CocoStudio导出的csb文件">CocoStudio使用笔记1：cocos2dx3.4加载CocoStudio导出的csb文件</a></li>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/jixiantiaoyue/68.html" title="CocosCreator零基础制作游戏《极限跳跃》三、制作游戏主场景">CocosCreator零基础制作游戏《极限跳跃》三、制作游戏主场景</a></li>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/jixiantiaoyue/75.html" title="CocosCreator零基础制作游戏《极限跳跃》十、游戏打包发布，游戏复总结">CocosCreator零基础制作游戏《极限跳跃》十、游戏打包发布，游戏复总结</a></li>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/tools/29.html" title="教你使用TexturePacker工具对素材打包">教你使用TexturePacker工具对素材打包</a></li>
+		<li><i class="fa fa-dot-circle-o"></i><a href="https://www.byjth.com/jixiantiaoyue/73.html" title="CocosCreator零基础制作游戏《极限跳跃》八、添加游戏积分系统">CocosCreator零基础制作游戏《极限跳跃》八、添加游戏积分系统</a></li>
+		</ul>
+	</div></div></div>
+	<div id="zuixinwenzhang">
+	<div id="zuixin_biaoti"><span>最新文章</span></div>
+	<div id="zuixin_biankuang"><div class="wenzhang">
+	<ul>
+		<li>
+    <em class="hotone">1</em>
+			
+    <a title="(cocos2dx资源加密)cocoscreator资源加密方案" href="https://www.byjth.com/ccc/134.html">(cocos2dx资源加密)co...</a></li>
+		<li>
+    <em class="hottwo">2</em>
+			
+    <a title="creator开发常见问题汇总(不定时更新)" href="https://www.byjth.com/ccc/133.html">creator开发常见问题汇总(...</a></li>
+		<li>
+    <em class="hotthree">3</em>
+			
+    <a title="creator屏蔽多点触摸代码参考" href="https://www.byjth.com/ccc/132.html">creator屏蔽多点触摸代码参...</a></li>
+		<li>
+    <em class="hotSoSo">4</em>		
+    <a title="unity学习9_定时器Invoke,InvokeRepeating,CancelInvoke的简单使用" href="https://www.byjth.com/unity3d/131.html">unity学习9_定时器Invo...</a></li>
+		<li>
+    <em class="hotSoSo">5</em>		
+    <a title="CocosCreator简单使用全局观察者模式进行节点事件派送与监听" href="https://www.byjth.com/ccc/130.html">CocosCreator简单使用...</a></li>
+		<li>
+    <em class="hotSoSo">6</em>		
+    <a title="关于CocosCreator背包滚动和道具被点击的触发机制问题" href="https://www.byjth.com/ccc/129.html">关于CocosCreator背包...</a></li>
+		<li>
+    <em class="hotSoSo">7</em>		
+    <a title="CocosCreator使用json配置文件以及json文件读取" href="https://www.byjth.com/ccc/128.html">CocosCreator使用js...</a></li>
+		<li>
+    <em class="hotSoSo">8</em>		
+    <a title="导出CocosCreator项目供cocos2dx加载" href="https://www.byjth.com/ccc/127.html">导出CocosCreator项目...</a></li>
+		<li>
+    <em class="hotSoSo">9</em>		
+    <a title="unity学习8_UGUI_Mask遮罩裁剪制作圆形头像效果" href="https://www.byjth.com/unity3d/126.html">unity学习8_UGUI_Ma...</a></li>
+		</ul></div></div></div>
+	<div id="biaoqian">
+	<div id="biaoqian_biaoti"><span>标签</span></div>
+	<div id="biaoqian_biankuang">
+	<ul id="blogtags"><li>
+			
+		<a href="https://www.byjth.com/tag/%E7%BD%91%E7%8B%90%E6%BA%90%E7%A0%81" pjax="网狐源码" title="4篇文章">
+		网狐源码		</a>
+			
+		<a href="https://www.byjth.com/tag/%E5%AF%BC%E5%87%BACocosCreator%E9%A1%B9%E7%9B%AE%E4%BE%9Bcocos2dx%E5%8A%A0%E8%BD%BD" pjax="导出CocosCreator项目供cocos2dx加载" title="1篇文章">
+		导出CocosCreator项目供cocos2dx加载		</a>
+			
+		<a href="https://www.byjth.com/tag/jnihelper" pjax="jnihelper" title="1篇文章">
+		jnihelper		</a>
+			
+		<a href="https://www.byjth.com/tag/cocos2dx%E8%B5%84%E6%BA%90%E5%8A%A0%E5%AF%86" pjax="cocos2dx资源加密" title="1篇文章">
+		cocos2dx资源加密		</a>
+			
+		<a href="https://www.byjth.com/tag/%E5%AE%89%E5%8D%93%E5%B8%83%E5%B1%80" pjax="安卓布局" title="1篇文章">
+		安卓布局		</a>
+			
+		<a href="https://www.byjth.com/tag/eclipse" pjax="eclipse" title="1篇文章">
+		eclipse		</a>
+			
+		<a href="https://www.byjth.com/tag/%E7%BB%9D%E5%AF%B9%E5%9D%90%E6%A0%87%E7%B3%BB" pjax="绝对坐标系" title="1篇文章">
+		绝对坐标系		</a>
+			
+		<a href="https://www.byjth.com/tag/cocos2dx%E7%BD%91%E7%BB%9C" pjax="cocos2dx网络" title="3篇文章">
+		cocos2dx网络		</a>
+			
+		<a href="https://www.byjth.com/tag/%E7%BD%91%E7%8B%90%E6%90%AD%E5%BB%BA" pjax="网狐搭建" title="2篇文章">
+		网狐搭建		</a>
+			
+		<a href="https://www.byjth.com/tag/cocos2dx%E9%94%99%E8%AF%AF" pjax="cocos2dx错误" title="1篇文章">
+		cocos2dx错误		</a>
+			
+		<a href="https://www.byjth.com/tag/scrollview" pjax="scrollview" title="1篇文章">
+		scrollview		</a>
+			
+		<a href="https://www.byjth.com/tag/%E5%AE%89%E5%8D%93%E8%B0%83%E8%AF%95" pjax="安卓调试" title="1篇文章">
+		安卓调试		</a>
+			
+		<a href="https://www.byjth.com/tag/application" pjax="application" title="1篇文章">
+		application		</a>
+			
+		<a href="https://www.byjth.com/tag/Camera%E7%BB%84%E4%BB%B6" pjax="Camera组件" title="1篇文章">
+		Camera组件		</a>
+			
+		<a href="https://www.byjth.com/tag/%E7%BC%BA%E5%B0%91data" pjax="缺少data" title="1篇文章">
+		缺少data		</a>
+			
+		<a href="https://www.byjth.com/tag/to" pjax="to" title="1篇文章">
+		to		</a>
+			
+		<a href="https://www.byjth.com/tag/cocos2dx%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE" pjax="cocos2dx创建项目" title="3篇文章">
+		cocos2dx创建项目		</a>
+			
+		<a href="https://www.byjth.com/tag/%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8" pjax="九九乘法表" title="1篇文章">
+		九九乘法表		</a>
+			
+		<a href="https://www.byjth.com/tag/%E2%80%8B%E7%BD%91%E7%8B%906603%E6%BA%90%E7%A0%81" pjax="​网狐6603源码" title="2篇文章">
+		​网狐6603源码		</a>
+			
+		<a href="https://www.byjth.com/tag/%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95" pjax="自动登录" title="1篇文章">
+		自动登录		</a>
+			
+		<a href="https://www.byjth.com/tag/cocosstudio%E5%8A%A8%E7%94%BB" pjax="cocosstudio动画" title="1篇文章">
+		cocosstudio动画		</a>
+			
+		<a href="https://www.byjth.com/tag/creator_to_cocos2dx" pjax="creator_to_cocos2dx" title="1篇文章">
+		creator_to_cocos2dx		</a>
+			
+		<a href="https://www.byjth.com/tag/not" pjax="not" title="1篇文章">
+		not		</a>
+			
+		<a href="https://www.byjth.com/tag/android" pjax="android" title="4篇文章">
+		android		</a>
+			
+		<a href="https://www.byjth.com/tag/Wecenter%E6%8A%80%E6%9C%AF" pjax="Wecenter技术" title="1篇文章">
+		Wecenter技术		</a>
+			
+		<a href="https://www.byjth.com/tag/MenuItemToggle" pjax="MenuItemToggle" title="1篇文章">
+		MenuItemToggle		</a>
+			
+		<a href="https://www.byjth.com/tag/pm2" pjax="pm2" title="1篇文章">
+		pm2		</a>
+			
+		<a href="https://www.byjth.com/tag/schedulerOnce" pjax="schedulerOnce" title="1篇文章">
+		schedulerOnce		</a>
+			
+		<a href="https://www.byjth.com/tag/lua%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B" pjax="lua数据类型" title="1篇文章">
+		lua数据类型		</a>
+			
+		<a href="https://www.byjth.com/tag/c%2B%2B%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8" pjax="c++九九乘法表" title="1篇文章">
+		c++九九乘法表		</a>
+			
+		<a href="https://www.byjth.com/tag/cocos2dx%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B" pjax="cocos2dx网络编程" title="2篇文章">
+		cocos2dx网络编程		</a>
+			
+		<a href="https://www.byjth.com/tag/TexturePacker%E6%96%87%E7%90%86%E5%9B%BE" pjax="TexturePacker文理图" title="1篇文章">
+		TexturePacker文理图		</a>
+			
+		<a href="https://www.byjth.com/tag/creator%E6%96%87%E6%A1%A3" pjax="creator文档" title="1篇文章">
+		creator文档		</a>
+			
+		<a href="https://www.byjth.com/tag/sdk" pjax="sdk" title="2篇文章">
+		sdk		</a>
+			
+		<a href="https://www.byjth.com/tag/%E4%B9%9D%E6%B8%B8sdk" pjax="九游sdk" title="1篇文章">
+		九游sdk		</a>
+			
+		<a href="https://www.byjth.com/tag/lua%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" pjax="lua开发环境" title="1篇文章">
+		lua开发环境		</a>
+		</li></ul></div></div>
+
+</div></div></div><!--end #content-->
+</div><div></div>
+<div id="footerbar-out" style="/*clear:both; width: 1200px;margin: 0 auto;padding: 0;*/">
+<div id="footerbar">
+	<a onclick="goTop();" href="javascript:void(0);">返回顶部</a> &nbsp;&nbsp;
+	<a href="https://www.byjth.com/">首页</a> &nbsp;&nbsp;
+<a href="https://www.byjth.com/m/" title="手机版本" target="_blank">手机版本</a> &nbsp;&nbsp;
+	版权所有：<a href="https://www.byjth.com/" class="chaffle" data-lang="zh">闭眼就天黑专栏_技术博客_个人学习总结<br></a>&nbsp;&nbsp;&nbsp;
+站长：<span class="chaffle" data-lang="zh">
+<a href="https://www.byjth.com/author/1" title="学习，思考，沉淀，升华，分享。独立游戏QQ群：515753718 153394579@qq.com">闭眼就天黑</a></span>&nbsp;&nbsp;&nbsp;
+<a href="https://www.byjth.com/?keyword=cocos2dx" target="_blank" class="hint--top hint--rounded" title="看看作者还有什么新鲜的cocos2dx主题文章勒？">搜索cocos2dx主题</a>
+<a href="https://www.byjth.com/" rel="nofollow" class="hint--left hint--info" title="大名鼎鼎的闭眼就天黑的博客，地球人都在知道。" target="_blank">技术支持：闭眼就天黑</a>&nbsp;&nbsp;
+<a href="http://www.miibeian.gov.cn/" rel="nofollow" target="_blank">皖ICP备14007736号-1</a>&nbsp;&nbsp;<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254887650'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1254887650%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1254887650"><a href="https://www.cnzz.com/stat/website.php?web_id=1254887650" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" original="https://icon.cnzz.com/img/pic1.gif" style=""></a></span><script src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/z_stat.php" type="text/javascript"></script><script src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/core.php" charset="utf-8" type="text/javascript"></script>
+
+<div style="width:300px;margin:0 auto; padding:20px 0;">
+<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34132102000107" rel="nofollow" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img style="float: left;" original=""><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">皖公网安备 34132102000107号</p></a></div>
+
+
+<script type="text/javascript">
+    /*自适应 创建于 2017/6/26*/
+    var cpro_id = "u3019181";
+</script>
+<script type="text/javascript" src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/i.js.下载"></script>&nbsp;&nbsp;
+	<script type="text/javascript" src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/jquery.min.js(1).下载"></script>
+<script type="text/javascript" src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/jquery.lazyload.js.下载"></script>
+<script type="text/javascript">
+	var jQuery=$.noConflict();
+	jQuery("img").lazyload({
+		effect : "fadeIn",
+		failurelimit : 10});
+</script>
+<a href="https://www.byjth.com/sitemap.xml" rel="sitemap">sitemap</a></div>
+<div id="dening">
+<div id="shangxia" class="animated bounceInUp">
+<div id="shang" title0="回到顶部"></div>
+<div id="comt"><a id="ds-reset" title0="随便看看评论喽~"><img src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/kongbai.png"></a></div>
+<div id="xia" title0="直下底部"></div>
+</div>
+<script>function fuckyou(){window.close(),window.location="about:blank"}function ck(){return console.profile(),console.profileEnd(),console.clear&&console.clear(),"object"==typeof console.profiles?console.profiles.length>0:void 0}function hehe(){(window.console&&(console.firebug||console.table&&/firebug/i.test(console.table()))||"object"==typeof opera&&"function"==typeof opera.postError&&console.profile.length>0)&&fuckyou(),"object"==typeof console.profiles&&console.profiles.length>0&&fuckyou()}hehe(),window.onresize=function(){window.outerHeight-window.innerHeight>200&&fuckyou()};</script>
+<script data-no-instant="">function stop(){return false}document.oncontextmenu=stop;InstantClick.on('change',function(isInitialLoad){if(isInitialLoad===false){if(typeof Prism!=='undefined')Prism.highlightAll(true,null)}});InstantClick.init();</script>
+<script>document.body.oncopy=function(){alert("嘿嘿，复制成功咯！若要转载请务必保留原文链接，一定要注明来源哟~，谢谢合作！")};</script>
+<script src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/iitboy.js.下载" type="text/javascript"></script>
+<script src="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/swfobject_modified.js.下载" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="./Lua学习笔记2：Windows7下使用VS2015搭建Lua开发环境(二) - 闭眼就天黑专栏_技术博客_个人学习总结_files/player.css">
+
+</div></div>
+<div class="loading">
+  <div class="loading2">
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+  </div>
+</div>
+<script type="text/javascript">
+geci="";welcome="open";
+tips="欢迎光临闭眼就天黑的个人博客";
+setTimeout(function(){$player.toggleClass("show")},6000);</script>
+
+
+</body></html>

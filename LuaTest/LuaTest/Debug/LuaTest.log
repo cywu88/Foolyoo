@@ -1,0 +1,6 @@
+﻿  LuaTest.cpp
+e:\foolyoo\luatest\luatest\luatest.cpp(28): warning C4244: “初始化”: 从“lua_Number”转换到“int”，可能丢失数据
+e:\foolyoo\luatest\luatest\luatest.cpp(43): warning C4101: “i”: 未引用的局部变量
+e:\foolyoo\luatest\luatest\luatest.cpp(111): warning C4244: “初始化”: 从“lua_Integer”转换到“int”，可能丢失数据
+e:\foolyoo\luatest\luatest\luatest.cpp(112): warning C4244: “初始化”: 从“lua_Integer”转换到“int”，可能丢失数据
+  LuaTest.vcxproj -> E:\Foolyoo\LuaTest\Debug\LuaTest.exe
