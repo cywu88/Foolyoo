@@ -19,7 +19,7 @@ void processInput(GLFWwindow *window)
 		glfwSetWindowShouldClose(window, true);
 }
 
-int main()
+int hello_window_clear()
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -39,6 +39,7 @@ int main()
 		glfwTerminate();
 		return -1;
 	}
+
 	glfwMakeContextCurrent(window);
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
