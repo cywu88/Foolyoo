@@ -19,7 +19,7 @@ void processInput(GLFWwindow *window)
 		glfwSetWindowShouldClose(window, true);
 }
 
-int hello_window_clear()
+int main()
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
