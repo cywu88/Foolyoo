@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua5.3", "Lua5.3\Lua5.3.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaTest", "LuaTest\LuaTest.vcxproj", "{BF951CB4-EADD-414B-A19A-908EB1E8EB12}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua5.1Test", "Lua5.1Test\Lua5.1Test.vcxproj", "{8A9305AE-49F6-458A-98EE-A068E5939B47}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuaCSharp", "LuaCSharp\LuaCSharp.csproj", "{B651B49B-4591-454F-88EB-796CF86898C9}"
 EndProject
 Global
